@@ -1,0 +1,21 @@
+{
+  "header": "This header {{ statey }}",
+  "test.language.selector": "this is a test",
+  "footer.title": "Latest news",
+  "settings.profile.title.picture": "Profile Picture",
+  "settings.side.bar.title": "User Settings",
+  "common.title.name": "Name",
+  "common.title.profile": "Profile",
+  "common.title.language": "Language",
+  "common.title.email": "Email",
+  "common.title.customer": "Customer",
+  "common.feedback.no.image.selected": "No image selected",
+  "common.feedback.image.uploaded": "Image uploaded successfully",
+  "common.feedback.validation.error": "Validation error",
+  "common.feedback.update.failed": "couldn't update",
+  "settings.feedback.user.updated": "Successfully updated the user",
+  "common.button.submit": "submit",
+  "common.button.discard": "discard",
+  "common.image.upload": "Click the image to change it",
+  "common.title.Logout": "Log out"
+}

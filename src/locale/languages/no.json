@@ -1,0 +1,20 @@
+{
+  "header": "Denne overskrift {{ statey }}",
+  "test.language.selector": "dette er en test",
+  "footer.title": "Latest news",
+  "settings.profile.title.picture": "Profile Picture",
+  "settings.side.bar.title": "User Settings",
+  "common.title.name": "Navn",
+  "common.title.profile": "Profile",
+  "common.title.language": "Language",
+  "common.title.email": "Email",
+  "common.title.customer": "Customer",
+  "common.feedback.no.image.selected": "No image selected",
+  "common.feedback.image.uploaded": "Image uploaded successfully",
+  "common.feedback.update.failed": "couldn't update",
+  "common.button.submit": "submit",
+  "common.button.discard": "submit",
+  "settings.feedback.user.updated": "Successfully updated the user",
+  "common.feedback.validation.error": "Validation error",
+  "common.image.upload": "Click the image to change it"
+}
