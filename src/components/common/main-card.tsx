@@ -16,6 +16,8 @@ const MainCard = ({ maxWidth, cardProps, cardContentProps, cardActions, title, c
         height: '100%',
         textWrap: 'wrap',
         overflowX: 'hidden',
+        paddingTop: '2rem',
+        position: 'relative',
         borderRadius: 0,
         ...cardProps?.sx,
         ...(maxWidth
@@ -29,7 +31,6 @@ const MainCard = ({ maxWidth, cardProps, cardContentProps, cardActions, title, c
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 2,
           overflow: 'hidden',
         }}
         {...cardContentProps}
@@ -50,7 +51,11 @@ const BlueBoxHeader = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   color: 'white',
   textTransform: 'full-size-kana',
-  padding: '0.5rem',
+  padding: '0.55rem',
   fontWeight: 300,
-  fontSize: 16,
+  fontSize: 15,
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
 }));

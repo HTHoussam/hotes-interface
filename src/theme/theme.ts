@@ -33,19 +33,20 @@ export const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          height: '100vh',
+          minHeight: '100vh',
           margin: '0 auto',
-          backGroundColor: 'rgba(255, 255, 255, 0.55)',
+          backgroundColor: 'rgba(0, 0, 0, 0.14)',
           verticalAlign: 'baseline',
+          overflow: 'hidden',
         },
         a: {
           color: 'inherit',
           textDecoration: 'none',
         },
-        '#root': {
-          minHeight: '100vh',
-          overflowX: 'hidden',
-        },
+        // '#root': {
+        //   minHeight: '100vh',
+        //   overflowX: 'hidden',
+        // },
         '*::-webkit-scrollbar': {
           '--thumb-thickness': '0.75rem',
           backgroundColor: 'transparent',

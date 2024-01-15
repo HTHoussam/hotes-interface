@@ -1,34 +1,8 @@
 import { Box, Paper, Typography, styled } from '@mui/material';
-import { useMemo } from 'react';
-type ItemsData = {
-  type: string;
-  seriesId: string;
-  dataIndex: number;
-};
-type SeriesData = {
-  id: string;
-  type: string;
-  data: {
-    color: string;
-    label: string;
-    value: number;
-    id: string;
-    data: number;
-    index: number;
-    startAngle: number;
-    endAngle: number;
-    padAngle: number;
-    formattedValue: string;
-  }[];
-  cx: number;
-  cy: number;
-  innerRadius: number;
-  outerRadius: number;
-};
+import { ChartsItemContentProps } from '@mui/x-charts/ChartsTooltip';
+import { FunctionComponent, useMemo } from 'react';
 
-const CustomChartTooltip = ({ itemData, series }: { itemData: ItemsData; series: SeriesData }) => {
-  console.log('vseries', series);
-
+const CustomChartTooltip: FunctionComponent<ChartsItemContentProps<'pie'>> = ({ itemData, series }) => {
   const sumOfAll = useMemo(() => {
     return series.data.reduce((prevValue, next) => prevValue + next.data, 0);
   }, [series.data]);
@@ -36,7 +10,8 @@ const CustomChartTooltip = ({ itemData, series }: { itemData: ItemsData; series:
     <StyledTooltipPaper>
       <FlexItem>
         <Typography>
-          {(Math.abs(series.data[itemData.dataIndex].data / sumOfAll) * 100).toFixed(2)}{' '}
+          {(Math.abs(series.data[itemData.dataIndex].data / sumOfAll) * 100).toFixed(2)}
+          {'% '}
           {series.data[itemData.dataIndex].label}{' '}
         </Typography>
       </FlexItem>

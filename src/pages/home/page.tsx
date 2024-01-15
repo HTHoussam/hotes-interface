@@ -1,7 +1,9 @@
 import { MainCard } from '@/components/common';
 import StackedDataRows from '@/components/common/stacked-data-rows';
-import { Box, Stack } from '@mui/material';
-import { PrincipalChart } from './components';
+import { Footer } from '@/components/layout/UI';
+import { Box, Stack, styled } from '@mui/material';
+import OverviewCard from './components/overview-card';
+import PrincipalChart from './components/principal-chart';
 
 export default () => {
   const data: { title: string; value: string; href: string }[] = [
@@ -32,51 +34,63 @@ export default () => {
     },
   ];
   return (
-    <Stack gap={2} flexDirection={'row'}>
-      <MainCard
-        title="Todays Number statistics and reports"
-        cardProps={{
-          sx: {
-            flex: 1,
-          },
+    <GridContainer>
+      <Stack
+        sx={{
+          gridColumn: '1 / span 1',
+          gridRow: '1 / span 1',
+          justifyContent: 'space-between',
+          gap: 6,
+          flexDirection: 'row',
         }}
       >
-        <>
+        <MainCard
+          title="Todays Number statistics and reports"
+          cardProps={{
+            sx: {
+              flex: 1,
+            },
+          }}
+        >
+          <>
+            <Stack>
+              <Box marginTop={'2rem'}>
+                <PrincipalChart />
+              </Box>
+              <StackedDataRows data={data} />
+            </Stack>
+          </>
+        </MainCard>
+        <MainCard
+          title="To-Do List"
+          cardProps={{
+            sx: {
+              flex: 1,
+            },
+          }}
+        >
           <Box>
             <p>hello</p>
           </Box>
-          <Stack>
-            <Box>
-              <PrincipalChart />
-            </Box>
-            <StackedDataRows data={data} />
-          </Stack>
-        </>
-      </MainCard>
-      <MainCard
-        title="To-Do List"
-        cardProps={{
-          sx: {
-            flex: 0.5,
-          },
-        }}
-      >
-        <Box>
-          <p>hello</p>
-        </Box>
-      </MainCard>
-      <MainCard
-        title="Overview"
-        cardProps={{
-          sx: {
-            flex: 1,
-          },
-        }}
-      >
-        <Box>
-          <p>hello</p>
-        </Box>
-      </MainCard>
-    </Stack>
+        </MainCard>
+        <MainCard
+          title="Overview"
+          cardProps={{
+            sx: {
+              flex: 1,
+            },
+          }}
+        >
+          <OverviewCard />
+        </MainCard>
+      </Stack>
+      <Footer />
+    </GridContainer>
   );
 };
+const GridContainer = styled(Box)(() => ({
+  display: 'grid',
+  gridTemplateColumns: 'auto',
+  gridTemplateRows: 'auto auto',
+  height: '100%',
+}));

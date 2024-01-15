@@ -3,8 +3,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Box, ClickAwayListener, Stack, styled } from '@mui/material';
 import { useCallback, useState } from 'react';
-import { Shield } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
+import { NavLinks } from '.';
 
 const imgLink = '/imgs/kapitalkontrol-logo.png';
 
@@ -40,17 +40,20 @@ const SideMenu = () => {
           </CollapseButton>
         )}
         <Stack
-          p={2}
           gap={4}
           color={'white'}
           sx={{
             justifyContent: 'space-between',
             height: '100%',
+            paddingLeft: '0.75rem',
+            paddingRight: '0.5rem',
+            paddingTop: '1rem',
           }}
         >
           <Stack
             sx={{
               flex: 0.5,
+              minHeight: '4.5rem',
             }}
           >
             <Box>
@@ -67,21 +70,7 @@ const SideMenu = () => {
               flex: 3.5,
             }}
           >
-            {Array.from({ length: 4 }).map((_, index) => (
-              <Stack key={index} gap={1}>
-                {Array.from({ length: 4 }).map((_, idx) => (
-                  <Stack key={idx} direction={'row'} justifyContent={'space-between'} minHeight={'1.5rem'}>
-                    <Stack flexDirection={'row'} gap={2} fontWeight={600}>
-                      <Shield size={20} />
-                      {!isCollapsed && <Box>Administration</Box>}
-                    </Stack>
-                    <Box fontSize={'14'} fontWeight={'300'}>
-                      (A)
-                    </Box>
-                  </Stack>
-                ))}
-              </Stack>
-            ))}
+            <NavLinks isCollapsed={isCollapsed} />
           </Stack>
           <ContactBox>
             {!isCollapsed && (
@@ -115,6 +104,7 @@ const ContactBox = styled(Box)(({ theme }) => ({
   fontWeight: 600,
   fontSize: '13px',
   textWrap: 'nowrap',
+  minHeight: '8rem',
 }));
 
 interface CollapseButtonProps {

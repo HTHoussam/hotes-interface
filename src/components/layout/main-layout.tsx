@@ -1,33 +1,39 @@
-import { Box, Stack, styled } from '@mui/material';
+import { useKeyShortcuts } from '@/hooks/use-key-shortcuts';
+import { Box, Paper, Stack, styled } from '@mui/material';
 import { Outlet } from 'react-router-dom';
-import { Footer, SideMenu } from './UI';
 import Header from './UI/header';
+import SideMenu from './UI/side-menu';
 
 export const MainLayout = () => {
+  useKeyShortcuts();
   return (
-    <Stack sx={{ height: '100vh', flexDirection: 'row' }}>
+    <Stack direction="row" height="100vh">
       <SideMenu />
-      <Stack direction="column" flexGrow={1} width={'100%'}>
-        <Header />
-        <StackContainer>
-          <Box sx={{ p: 2 }}>
+      <Box sx={{ width: '100%' }}>
+        <GridContainer>
+          <Header />
+          <Paper
+            sx={{
+              position: 'relative',
+              gridColumn: '1 / span 1',
+              gridRow: '2 / span 1',
+              overflow: 'auto',
+              scrollbarGutter: 'stable',
+              padding: '1rem',
+            }}
+          >
             <Outlet />
-          </Box>
-          <Footer />
-        </StackContainer>
-      </Stack>
+          </Paper>
+        </GridContainer>
+      </Box>
     </Stack>
   );
 };
-const StackContainer = styled(Stack)(({ theme }) => ({
-  flexDirection: 'column',
-  justifyContent: 'space-between',
+
+const GridContainer = styled(Box)(() => ({
+  display: 'grid',
+  gridTemplateColumns: 'auto',
+  gridTemplateRows: 'auto 1fr',
   height: '100%',
-  paddingLeft: '0.5rem',
-  paddingRight: '0.5rem',
-  overflowX: 'hidden',
-  flex: 3,
   position: 'relative',
-  paddingY: 2,
-  backgroundColor: theme.palette.divider,
 }));

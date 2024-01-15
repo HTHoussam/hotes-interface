@@ -1,4 +1,4 @@
-import { Footer } from '@/components/layout';
+import { Footer } from '@/components/layout/UI';
 import { render, screen } from '@/configs/test-utils';
 import { describe, expect, it } from 'vitest';
 

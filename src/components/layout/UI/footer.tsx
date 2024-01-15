@@ -8,15 +8,9 @@ import { useTranslation } from 'react-i18next';
 const Footer = () => {
   const { t } = useTranslation();
   const [isFooterOpen, setIsFooterOpen] = useState<boolean>(false);
-  const [footerPosition, setFooterPosition] = useState<string>('sticky');
+
   const toggleFooter = useCallback(() => {
     setIsFooterOpen(!isFooterOpen);
-    if (!isFooterOpen === false) {
-      setFooterPosition('absolute');
-      setTimeout(() => {
-        setFooterPosition('sticky');
-      }, 800);
-    }
   }, [isFooterOpen]);
 
   const generateRandomNews = () => {
@@ -32,89 +26,80 @@ const Footer = () => {
   };
 
   const newsList = Array.from({ length: 12 }, generateRandomNews);
-
   const firstHeight = useMemo(() => {
     if (!newsList) return '5rem';
     return newsList.length >= 7 ? '12rem' : newsList.length <= 7 ? '7rem' : '10rem';
   }, [newsList]);
 
-  const footerMaxHeight = useMemo(() => {
-    return document.getElementById('main-header')?.clientHeight ?? '80';
-  }, []);
-
   return (
-    <StyledFooter
+    <Box
       sx={{
-        ...(isFooterOpen
-          ? {
-              ...{
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                maxHeight: `Calc(100vh - ${footerMaxHeight}px)`,
-              },
-            }
-          : {
-              maxHeight: firstHeight,
-              position: footerPosition,
-              bottom: 0,
-              left: 0,
-            }),
+        height: '100%',
+        gridColumn: '1 / span 1',
+        gridRow: isFooterOpen ? '1/span 2' : '2 / span 1',
+        pointerEvents: 'none',
+        zIndex: 30,
+        maxHeight: isFooterOpen ? '100%' : firstHeight,
       }}
     >
-      <Stack
-        direction={'row'}
-        sx={{
-          justifyContent: 'space-between',
-          paddingX: 2,
-          flex: 1,
-        }}
-      >
-        <Stack direction={'column'} overflow={'auto'} width={'100%'}>
-          <>
-            <Typography variant="subtitle2" fontWeight={'600'}>
-              {t('footer.title')}
-            </Typography>
-            {[...(!isFooterOpen && newsList.length >= 7 ? newsList.slice(0, 7) : newsList)].map(({ date, news }) => (
-              <NewsSpan key={`${date}-${news.slice(0, 5)}`} date={date} news={news} />
-            ))}
-          </>
-        </Stack>
-        <Circle
-          sx={
-            isFooterOpen
-              ? {
-                  transform: '',
-                }
-              : {
-                  transform: 'rotate(180Deg)',
-                  ':hover': {
-                    transform: 'scale(1.05) rotate(180Deg)',
-                  },
-                }
-          }
-          onClick={toggleFooter}
+      <StyledFooter expanded={isFooterOpen}>
+        <Stack
+          direction={'row'}
+          sx={{
+            justifyContent: 'space-between',
+            paddingX: 2,
+            flex: 1,
+          }}
         >
-          <ArrowDownShort size={35} />
-        </Circle>
-      </Stack>
-    </StyledFooter>
+          <Stack direction={'column'} overflow={'auto'} width={'100%'}>
+            <>
+              <Typography variant="subtitle2" fontWeight={'600'}>
+                {t('footer.title')}
+              </Typography>
+              {[...(!isFooterOpen && newsList.length >= 7 ? newsList.slice(0, 7) : newsList)].map(({ date, news }) => (
+                <NewsSpan key={`${date}-${news.slice(0, 5)}`} date={date} news={news} />
+              ))}
+            </>
+          </Stack>
+          <Circle
+            sx={
+              isFooterOpen
+                ? {
+                    transform: '',
+                  }
+                : {
+                    transform: 'rotate(180Deg)',
+                    ':hover': {
+                      transform: 'scale(1.05) rotate(180Deg)',
+                    },
+                  }
+            }
+            onClick={toggleFooter}
+          >
+            <ArrowDownShort size={35} />
+          </Circle>
+        </Stack>
+      </StyledFooter>
+    </Box>
   );
 };
 export default Footer;
 
-const StyledFooter = styled(Box)(({ theme }) => ({
+const StyledFooter = styled(Box)<{ expanded: boolean }>(({ theme, expanded }) => ({
   borderTop: `4px solid ${theme.palette.primary.main} !important`,
   border: `1px solid ${theme.palette.divider}`,
   padding: 8,
-  bottom: 0,
   width: '100%',
   marginTop: '1rem',
   backgroundColor: 'white',
   zIndex: 10,
   transition: 'all .85s ease',
   height: '100%',
-  overflow: 'auto',
+
+  position: expanded ? 'absolute' : 'sticky',
+  bottom: expanded ? 0 : -10,
+  left: 0,
+  pointerEvents: 'auto',
 }));
 
 const Circle = styled(Box)(({ theme }) => ({

@@ -69,5 +69,64 @@
     "activeCasesBalace": "48093029320",
     "degreeOfSolution": 0,
     "lastTransferred": "24-11-2023"
-  }
+  },
+  "overview": [
+    {
+      "title": "1 foreldes",
+      "value": 0
+    },
+    {
+      "title": "2 utleggstrekk",
+      "value": 0
+    },
+    {
+      "title": "3 gjeldsordning",
+      "value": 0
+    },
+    {
+      "title": "4 vurderingsmelding",
+      "value": 0
+    },
+    {
+      "title": "5 overdekning",
+      "value": 0
+    },
+    {
+      "title": "6 betallingsavtale",
+      "value": 0
+    },
+    {
+      "title": "7 pa vent",
+      "value": 0
+    },
+    {
+      "title": "8 langtidsovervakning",
+      "value": 0
+    },
+    {
+      "title": "9 tvangstiltak",
+      "value": 0
+    },
+    {
+      "title": "10 Forfallsliste dokumenter",
+      "value": 0
+    },
+    {
+      "title": "11 ved advokat",
+      "value": 0
+    },
+    {
+      "title": "12 vurdert restpurring",
+      "value": 0
+    },
+    {
+      "title": "13 Demo saksbehandler",
+      "value": 0
+    }
+  ],
+  "customers": [
+    { "name": "customer1", "id": "0011", "role": "admin" },
+    { "name": "customer322", "id": "0012", "role": "user" },
+    { "name": "customer2332", "id": "0013", "role": "audit" }
+  ]
 }

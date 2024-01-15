@@ -1,5 +1,5 @@
-import { Box, Stack, styled } from '@mui/material';
-import { GlobalSearch, NotificationTab, UserDropDown } from '.';
+import { Stack, Typography, styled } from '@mui/material';
+import { GlobalSearch, NotificationTab, SelectCustomers, UserDropDown } from '.';
 
 const Header = () => {
   return (
@@ -14,12 +14,17 @@ const Header = () => {
           flexDirection: 'row-reverse',
         }}
       >
-        <Stack alignItems={'flex-end'} gap={'4rem'} flexDirection={'row'}>
+        <Stack justifyContent={'flex-end'} alignItems={'flex-end'} gap={'9rem'} flexDirection={'row'} flex={1}>
           <GlobalSearch />
-          <NotificationTab />
-          <UserDropDown />
+          <Stack direction="row" alignItems={'flex-end'} gap={6}>
+            <NotificationTab />
+            <UserDropDown />
+          </Stack>
         </Stack>
-        <Box>here customers</Box>
+        <Stack direction={'row'} color={'white'} alignItems={'center'} justifyContent={'space-between'} flex={1}>
+          <Typography maxWidth={'7rem'}>Municipality : 0219 Engstelig Tiger AS</Typography>
+          <SelectCustomers />
+        </Stack>
       </Stack>
     </FlexedStickyHeader>
   );
@@ -27,6 +32,8 @@ const Header = () => {
 
 export default Header;
 const FlexedStickyHeader = styled(Stack)(({ theme }) => ({
+  gridRow: '1 / span 1',
+  gridColumn: '1 / span 1',
   backgroundColor: theme.palette.primary.main,
   flexDirection: 'row',
   padding: '0.5rem 4.5rem',
@@ -34,7 +41,9 @@ const FlexedStickyHeader = styled(Stack)(({ theme }) => ({
   position: 'sticky',
   justifyContent: 'flex-end',
   alignItems: 'center',
-  maxHeight: '5.755rem',
+  minHeight: '5.755rem',
   flex: 0.25,
   boxShadow: '0px 4px 34px 0px rgba(0, 0, 0, 0.15)',
+  flexShrink: 0,
+  overflow: 'auto',
 }));
