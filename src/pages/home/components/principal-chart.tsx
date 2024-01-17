@@ -24,7 +24,7 @@ const PrincipalChart = () => {
       series={[
         {
           data: data2,
-          cx: 220,
+          cx: 160,
           cy: 100,
           innerRadius: 40,
           outerRadius: 100,
@@ -35,8 +35,7 @@ const PrincipalChart = () => {
         legend: {
           direction: 'row',
           position: { vertical: 'bottom', horizontal: 'middle' },
-          padding: 0,
-          itemGap: 52,
+          itemGap: 22,
           markGap: 10,
           labelStyle: {
             fontSize: 14,

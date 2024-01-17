@@ -1,13 +1,29 @@
 import useIsMobile from '@/hooks/useIsMobile';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Box, ClickAwayListener, Stack, styled } from '@mui/material';
+import { Box, ClickAwayListener, Popover, Stack, styled } from '@mui/material';
 import { useCallback, useState } from 'react';
+import { InfoCircle } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { NavLinks } from '.';
 
 const imgLink = '/imgs/kapitalkontrol-logo.png';
 
+const InfoComponent = () => {
+  return (
+    <>
+      KapitalKontroll AS
+      <br />
+      Hovfaret 10
+      <br />
+      0275 Oslo
+      <br />
+      Org.nr: 920 854 028
+      <br />
+      support@kapitalkontroll.no
+    </>
+  );
+};
 const SideMenu = () => {
   const initialValue = JSON.parse(localStorage.getItem('CollapsedMenu') ?? '{}');
   const { isMobile } = useIsMobile();
@@ -17,6 +33,18 @@ const SideMenu = () => {
     setIsCollapsed((prev) => !prev);
   }, [isCollapsed]);
   const [showCollapseBtn, setShowCollapseBtn] = useState(false);
+
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
 
   return (
     <ClickAwayListener onClickAway={() => (isMobile ? setIsCollapsed(true) : () => {})}>
@@ -73,20 +101,47 @@ const SideMenu = () => {
             <NavLinks isCollapsed={isCollapsed} />
           </Stack>
           <ContactBox>
-            {!isCollapsed && (
-              <>
-                KapitalKontroll AS
-                <br />
-                Hovfaret 10
-                <br />
-                0275 Oslo
-                <br />
-                Org.nr: 920 854 028
-                <br />
-                support@kapitalkontroll.no
-              </>
+            {!isCollapsed ? (
+              <InfoComponent />
+            ) : (
+              <Stack
+                sx={{
+                  alignItems: 'center',
+                }}
+                aria-owns={open ? 'mouse-over-popover' : undefined}
+                aria-haspopup="true"
+                onMouseEnter={handlePopoverOpen}
+                onMouseLeave={handlePopoverClose}
+              >
+                <InfoCircle size={20} color="white" />
+              </Stack>
             )}
           </ContactBox>
+          <Popover
+            id="info-popover"
+            sx={{
+              pointerEvents: 'none',
+              '& .MuiPaper-root': {
+                paddingInline: '1rem',
+                paddingBlock: '0.5rem',
+                maxWidth: '12rem',
+              },
+            }}
+            open={open}
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            transformOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            onClose={handlePopoverClose}
+            disableRestoreFocus
+          >
+            <InfoComponent />
+          </Popover>
         </Stack>
       </StyledMenu>
     </ClickAwayListener>

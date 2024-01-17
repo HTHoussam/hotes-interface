@@ -13,9 +13,7 @@ const MainCard = ({ maxWidth, cardProps, cardContentProps, cardActions, title, c
     <Card
       sx={{
         width: '100%',
-        height: '100%',
         textWrap: 'wrap',
-        overflowX: 'hidden',
         paddingTop: '2rem',
         position: 'relative',
         borderRadius: 0,

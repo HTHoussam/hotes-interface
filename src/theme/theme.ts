@@ -25,6 +25,11 @@ export const theme = createTheme({
       fontWeight: 500,
       textTransform: 'capitalize',
     },
+    body2: {
+      fontSize: '14px',
+      fontWeight: 500,
+      textTransform: 'capitalize',
+    },
     body1: {
       fontSize: '12px',
     },

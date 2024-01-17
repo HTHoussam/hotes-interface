@@ -1,6 +1,6 @@
 import { OutlinedSelect } from '@/components/common/styled-components';
 import { Box, MenuItem, Stack, Typography } from '@mui/material';
-import { BoxArrowRight, PersonCircle, PersonFill, Translate } from 'react-bootstrap-icons';
+import { BoxArrowRight, Person, PersonCircle, Translate } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 const UserDropDown = () => {
@@ -13,7 +13,7 @@ const UserDropDown = () => {
         gap: 2,
       }}
     >
-      <PersonFill size={35} color="white" />
+      <Person size={35} color="white" />
       <Box>
         <OutlinedSelect
           MenuProps={{

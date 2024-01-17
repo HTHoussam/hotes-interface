@@ -21,6 +21,10 @@ const GlobalSearch = () => {
       InputProps={{
         startAdornment: <SearchOutlinedIcon />,
       }}
+      sx={{
+        width: '100%',
+        maxWidth: '17rem',
+      }}
       label=""
       variant="standard"
       placeholder="Sok..."

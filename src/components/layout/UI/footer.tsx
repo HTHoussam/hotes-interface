@@ -1,48 +1,32 @@
-import { faker } from '@faker-js/faker';
+import { FooterStatus } from '@/pages/home/page';
 import { Box, Stack, Typography, styled } from '@mui/material';
-import dayjs from 'dayjs';
-import { useCallback, useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback } from 'react';
 import { ArrowDownShort } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';
-
-const Footer = () => {
+const Footer = ({
+  setFooterStatus,
+  footerStatus,
+  newsList,
+}: {
+  setFooterStatus: Dispatch<SetStateAction<FooterStatus>>;
+  footerStatus: FooterStatus;
+  newsList: any[];
+}) => {
   const { t } = useTranslation();
-  const [isFooterOpen, setIsFooterOpen] = useState<boolean>(false);
 
   const toggleFooter = useCallback(() => {
-    setIsFooterOpen(!isFooterOpen);
-  }, [isFooterOpen]);
-
-  const generateRandomNews = () => {
-    const randomDate = faker.date.anytime();
-    const formattedDate = dayjs(randomDate).format('DD.MM.YYYY');
-
-    const randomNews = faker.lorem.sentence();
-
-    return {
-      date: formattedDate,
-      news: randomNews,
-    };
-  };
-
-  const newsList = Array.from({ length: 12 }, generateRandomNews);
-  const firstHeight = useMemo(() => {
-    if (!newsList) return '5rem';
-    return newsList.length >= 7 ? '12rem' : newsList.length <= 7 ? '7rem' : '10rem';
-  }, [newsList]);
+    setFooterStatus((prev) => (prev === 'collapsed' ? 'expanded' : 'collapsed'));
+  }, [setFooterStatus]);
 
   return (
     <Box
       sx={{
         height: '100%',
-        gridColumn: '1 / span 1',
-        gridRow: isFooterOpen ? '1/span 2' : '2 / span 1',
         pointerEvents: 'none',
         zIndex: 30,
-        maxHeight: isFooterOpen ? '100%' : firstHeight,
       }}
     >
-      <StyledFooter expanded={isFooterOpen}>
+      <StyledFooter>
         <Stack
           direction={'row'}
           sx={{
@@ -56,14 +40,17 @@ const Footer = () => {
               <Typography variant="subtitle2" fontWeight={'600'}>
                 {t('footer.title')}
               </Typography>
-              {[...(!isFooterOpen && newsList.length >= 7 ? newsList.slice(0, 7) : newsList)].map(({ date, news }) => (
-                <NewsSpan key={`${date}-${news.slice(0, 5)}`} date={date} news={news} />
-              ))}
+              {[...(footerStatus === 'collapsed' && newsList.length >= 7 ? newsList.slice(0, 7) : newsList)].map(
+                ({ date, news }) => (
+                  <NewsSpan key={`${date}-${news.slice(0, 5)}`} date={date} news={news} />
+                ),
+              )}
             </>
           </Stack>
+
           <Circle
             sx={
-              isFooterOpen
+              footerStatus === 'expanded'
                 ? {
                     transform: '',
                   }
@@ -85,21 +72,17 @@ const Footer = () => {
 };
 export default Footer;
 
-const StyledFooter = styled(Box)<{ expanded: boolean }>(({ theme, expanded }) => ({
+const StyledFooter = styled(Box)(({ theme }) => ({
   borderTop: `4px solid ${theme.palette.primary.main} !important`,
   border: `1px solid ${theme.palette.divider}`,
   padding: 8,
   width: '100%',
-  marginTop: '1rem',
   backgroundColor: 'white',
   zIndex: 10,
-  transition: 'all .85s ease',
-  height: '100%',
-
-  position: expanded ? 'absolute' : 'sticky',
-  bottom: expanded ? 0 : -10,
   left: 0,
   pointerEvents: 'auto',
+  overflow: 'hidden',
+  height: '100%',
 }));
 
 const Circle = styled(Box)(({ theme }) => ({
@@ -112,7 +95,7 @@ const Circle = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   cursor: 'pointer',
-  transition: 'ease-in-out',
+  transition: 'transform ease-in-out',
   ':hover': {
     transform: 'scale(1.05) ',
   },

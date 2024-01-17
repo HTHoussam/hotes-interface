@@ -125,7 +125,15 @@ const NavLinks = ({ isCollapsed }: { isCollapsed?: boolean }) => {
   return Object.keys(navs).map((key) => (
     <Stack key={key} gap={2}>
       {navs[key].map(({ icon, letterValue, title }) => (
-        <Stack key={`${letterValue}-${title}`} direction={'row'} justifyContent={'space-between'} minHeight={'1.5rem'}>
+        <Stack
+          key={`${letterValue}-${title}`}
+          direction={'row'}
+          justifyContent={'space-between'}
+          sx={{
+            cursor: 'pointer',
+          }}
+          minHeight={'1.5rem'}
+        >
           <Stack
             flexDirection={'row'}
             gap={2}
