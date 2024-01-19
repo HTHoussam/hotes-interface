@@ -36,6 +36,6 @@
     "declarationMap": false,
     "declaration": false
   },
-  "include": ["src", "./src/**.(ts,tsx)"],
+  "include": ["src", "./src/**.(ts,tsx)", "cypress/e2e/spec.cy.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
