@@ -1,14 +1,12 @@
 import { MainCard } from '@/components/common';
-import StackedDataRows from '@/components/common/stacked-data-rows';
 import { Footer } from '@/components/layout/UI';
 import { faker } from '@faker-js/faker';
 
 import { Box, Stack, styled } from '@mui/material';
 import * as dayjs from 'dayjs';
 import { useState } from 'react';
-import { FirstCardTitle } from './components';
 import OverviewCard from './components/overview-card';
-import PrincipalChart from './components/principal-chart';
+import TodaysReports from './components/todays-reports';
 export type FooterStatus = 'expanded' | 'collapsed';
 export default () => {
   const data: { title: string; value: string; href: string }[] = [
@@ -52,77 +50,70 @@ export default () => {
     };
   };
 
-  const newsList = Array.from({ length: 11 }, generateRandomNews);
+  const newsList = Array.from({ length: 13 }, generateRandomNews);
   const [newsSliced, setNewsSliced] = useState<
     {
       date: string;
       news: string;
     }[]
   >(newsList.slice(0, 7));
+
   return (
     <GridContainer
-      onTransitionEnd={() =>
-        footerStatus === 'collapsed' ? setNewsSliced(newsList.slice(0, 7)) : setNewsSliced(newsList)
-      }
+      onTransitionEnd={() => {
+        footerStatus === 'collapsed' ? setNewsSliced(newsList.slice(0, 7)) : setNewsSliced(newsList);
+      }}
       footerStatus={footerStatus}
     >
-      <Stack
+      <Box
         sx={{
-          justifyContent: 'space-between',
-          gap: 2,
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          overflow: 'auto',
+          ...(footerStatus === 'collapsed' && { padding: '0.5rem', margin: '-0.5rem' }),
           scrollbarGutter: 'stable',
+          overflow: 'auto',
         }}
       >
-        <MainCard
-          title="Todays Number statistics and reports"
-          cardProps={{
-            sx: {
-              flex: 1,
-            },
+        <Stack
+          sx={{
+            justifyContent: 'space-between',
+            gap: 2,
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            // overflow: 'auto',
+            // scrollbarGutter: 'stable',
           }}
         >
-          <>
-            <Stack>
-              <FirstCardTitle title={'Paid Amount Last 12 Months'} />
-              <Box
-                marginTop={'2rem'}
-                sx={{
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
-                  width: '20.5rem',
-                }}
-              >
-                <PrincipalChart />
-              </Box>
-              <StackedDataRows data={data} />
-            </Stack>
-          </>
-        </MainCard>
-        <MainCard
-          title="To-Do List"
-          cardProps={{
-            sx: {
-              flex: 1,
-            },
-          }}
-        >
-          <Box></Box>
-        </MainCard>
-        <MainCard
-          title="Overview"
-          cardProps={{
-            sx: {
-              flex: 1,
-            },
-          }}
-        >
-          <OverviewCard />
-        </MainCard>
-      </Stack>
-
+          <MainCard
+            title="Todays Number statistics and reports"
+            cardProps={{
+              sx: {
+                flex: 1,
+              },
+            }}
+          >
+            <TodaysReports data={data} />
+          </MainCard>
+          <MainCard
+            title="To-Do List"
+            cardProps={{
+              sx: {
+                flex: 1,
+              },
+            }}
+          >
+            <Box></Box>
+          </MainCard>
+          <MainCard
+            title="Overview"
+            cardProps={{
+              sx: {
+                flex: 1,
+              },
+            }}
+          >
+            <OverviewCard />
+          </MainCard>
+        </Stack>
+      </Box>
       <Footer newsList={newsSliced} setFooterStatus={setFooterStatus} footerStatus={footerStatus} />
     </GridContainer>
   );
@@ -136,4 +127,5 @@ const GridContainer = styled(Box)<{ footerStatus: FooterStatus }>(({ footerStatu
   height: '100%',
   alignContent: 'space-between',
   position: 'relative',
+  gap: footerStatus === 'collapsed' ? '2rem' : '',
 }));

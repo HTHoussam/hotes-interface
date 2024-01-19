@@ -1,15 +1,22 @@
 import { Box, Stack, Typography, styled } from '@mui/material';
-import { BarChartLine, Clipboard2Plus } from 'react-bootstrap-icons';
+import { Dispatch, SetStateAction } from 'react';
+import { BarChartLine, FileEarmarkMedical } from 'react-bootstrap-icons';
 
-const FirstCardTitle = ({ title }: { title: string }) => {
+const FirstCardTitle = ({
+  title,
+  setOpenReportModal,
+}: {
+  title: string;
+  setOpenReportModal: Dispatch<SetStateAction<boolean>>;
+}) => {
   return (
     <Stack direction="row" justifyContent="space-between" alignItems="center">
       <Typography variant="body2" p={0.5}>
         {title}
       </Typography>
       <Stack direction="row" gap={'0.5rem'}>
-        <BluedIconBox>
-          <Clipboard2Plus size={20} />
+        <BluedIconBox onClick={() => setOpenReportModal(true)}>
+          <FileEarmarkMedical size={20} />
         </BluedIconBox>
         <BluedIconBox>
           <BarChartLine size={20} />
