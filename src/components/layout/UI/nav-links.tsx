@@ -16,6 +16,7 @@ import {
   VectorPen,
   WrenchAdjustableCircle,
 } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 
 const NavLinks = ({ isCollapsed }: { isCollapsed?: boolean }) => {
   const navs: {
@@ -30,45 +31,45 @@ const NavLinks = ({ isCollapsed }: { isCollapsed?: boolean }) => {
       {
         title: 'administration',
         icon: <Shield size={20} />,
-        link: '',
+        link: '/administration',
         letterValue: '(A)',
       },
       {
         title: 'Create case manually',
         icon: <WrenchAdjustableCircle size={20} />,
-        link: '',
+        link: '/cases',
         letterValue: '(B)',
       },
       {
         title: 'response management',
         icon: <ChatDots size={20} />,
-        link: '',
+        link: '/management',
         letterValue: '(M)',
       },
       {
         title: 'Public360 administration',
         icon: <VectorPen size={20} />,
-        link: '',
+        link: '/public-360',
         letterValue: '(Q)',
       },
     ],
     sectionB: [
       {
-        title: 'Import error - WIP',
+        title: 'Import error',
         icon: <ExclamationTriangle size={20} />,
-        link: '',
+        link: '/import-error',
         letterValue: '(D)',
       },
       {
         title: 'Import of new cases',
         icon: <CloudArrowUp size={20} />,
-        link: '',
+        link: '/new-cases',
         letterValue: '(T)',
       },
       {
         title: 'Attachments & OCR',
         icon: <Link45deg size={20} />,
-        link: '',
+        link: '/attachments',
         letterValue: '(F)',
       },
     ],
@@ -76,19 +77,19 @@ const NavLinks = ({ isCollapsed }: { isCollapsed?: boolean }) => {
       {
         title: 'Accounting Proposals',
         icon: <CalculatorFill size={20} />,
-        link: '',
+        link: '/accounting',
         letterValue: '(C)',
       },
       {
         title: 'Previously Recorded',
         icon: <BookmarkCheck size={20} />,
-        link: '',
+        link: '/recorded',
         letterValue: '(N)',
       },
       {
         title: 'See Your Proceedings',
         icon: <Eye size={20} />,
-        link: '',
+        link: '/proceedings',
         letterValue: '(L)',
       },
     ],
@@ -96,19 +97,19 @@ const NavLinks = ({ isCollapsed }: { isCollapsed?: boolean }) => {
       {
         title: 'Deptors',
         icon: <PersonBadge size={20} />,
-        link: '',
+        link: '/deptors',
         letterValue: '(P)',
       },
       {
         title: 'User Support',
         icon: <Headset size={20} />,
-        link: '',
+        link: '/user-support',
         letterValue: '(S)',
       },
       {
         title: 'User Manual',
         icon: <People size={20} />,
-        link: '',
+        link: '/user-manual',
         letterValue: '(Y)',
       },
     ],
@@ -116,7 +117,7 @@ const NavLinks = ({ isCollapsed }: { isCollapsed?: boolean }) => {
       {
         title: 'Go to Loans',
         icon: <Bank size={20} />,
-        link: '',
+        link: '/loans',
         letterValue: '(Z)',
       },
     ],
@@ -124,7 +125,7 @@ const NavLinks = ({ isCollapsed }: { isCollapsed?: boolean }) => {
 
   return Object.keys(navs).map((key) => (
     <Stack key={key} gap={2}>
-      {navs[key].map(({ icon, letterValue, title }) => (
+      {navs[key].map(({ icon, letterValue, title, link }) => (
         <Stack
           key={`${letterValue}-${title}`}
           direction={'row'}
@@ -139,11 +140,12 @@ const NavLinks = ({ isCollapsed }: { isCollapsed?: boolean }) => {
             gap={2}
             sx={{
               textWrap: 'nowrap',
+              textTransform: 'capitalize',
             }}
             fontWeight={600}
           >
             {icon}
-            {!isCollapsed && <Box textTransform={'capitalize'}>{title}</Box>}
+            {!isCollapsed && <Link to={link}>{title}</Link>}
           </Stack>
           <Box fontSize={'14'} fontWeight={'300'}>
             {letterValue}

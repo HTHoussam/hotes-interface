@@ -17,5 +17,8 @@
   "common.button.submit": "submit",
   "common.button.discard": "discard",
   "common.image.upload": "Click the image to change it",
-  "common.title.Logout": "Log out"
+  "common.title.Logout": "Log out",
+  "home.report.modal.title": "Opprett ny rapport",
+  "home.report.modal.first.tab.title": "Saksrapport",
+  "home.report.modal.second.tab.title": "Innbetaligsrappot"
 }

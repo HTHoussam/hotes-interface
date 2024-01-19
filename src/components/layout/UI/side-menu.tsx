@@ -84,7 +84,11 @@ const SideMenu = () => {
               minHeight: '4.5rem',
             }}
           >
-            <Box>
+            <Box
+              sx={{
+                marginInline: 'auto',
+              }}
+            >
               <Link to={'/'}>
                 <img alt="kk2-logo" src={isCollapsed || isMobile ? '/imgs/kk_Logo.png' : imgLink} />
               </Link>

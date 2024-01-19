@@ -5,14 +5,14 @@ const keysUrl: {
   [key: string]: string;
 } = {
   a: '/administration',
-  b: '/create-case',
+  b: '/cases',
   m: '/management',
-  q: '/public-admin',
+  q: '/public-360',
   d: '/import-error',
-  t: '/import-new-cases',
+  t: '/new-cases',
   f: '/attachments',
   // c: '/accounting',
-  n: '/records',
+  n: '/recorded',
   l: '/proceedings',
   p: '/deptors',
   s: '/user-support',

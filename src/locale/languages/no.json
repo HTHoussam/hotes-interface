@@ -16,5 +16,8 @@
   "common.button.discard": "submit",
   "settings.feedback.user.updated": "Successfully updated the user",
   "common.feedback.validation.error": "Validation error",
-  "common.image.upload": "Click the image to change it"
+  "common.image.upload": "Click the image to change it",
+  "home.report.modal.title": "Opprett ny rapport",
+  "home.report.modal.first.tab.title": "Saksrapport",
+  "home.report.modal.second.tab.title": "Innbetaligsrappot"
 }
