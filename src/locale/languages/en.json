@@ -19,6 +19,8 @@
   "common.image.upload": "Click the image to change it",
   "common.title.Logout": "Log out",
   "home.report.modal.title": "Opprett ny rapport",
+  "home.report.statistics.button.tooltip": "statistics",
+  "home.report.reports.button.tooltip": "reports",
   "home.report.modal.first.tab.title": "Saksrapport",
   "home.report.modal.second.tab.title": "Innbetaligsrappot"
 }

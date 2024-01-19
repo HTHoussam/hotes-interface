@@ -1,4 +1,4 @@
-import { Button, Select, Stack, Typography, styled } from '@mui/material';
+import { Button, Select, Stack, Tooltip, TooltipProps, Typography, styled, tooltipClasses } from '@mui/material';
 
 export const PageTitle = styled(Typography)(() => ({
   marginTop: '2rem',
@@ -15,6 +15,21 @@ export const InvertedColorButton = styled(Button)(({ theme }) => ({
   '&:hover': {
     backgroundColor: 'white',
     color: theme.palette.primary.main,
+  },
+}));
+
+export const StyledTooltip = styled(({ className, color, ...props }: TooltipProps) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme, color }) => ({
+  [`& .${tooltipClasses.tooltipArrow}`]: {
+    backgroundColor: color,
+    boxShadow: theme.shadows[1],
+  },
+  [`& .${tooltipClasses.arrow}`]: {
+    '&:before': {
+      border: `1px solid ${color}`,
+    },
+    color,
   },
 }));
 

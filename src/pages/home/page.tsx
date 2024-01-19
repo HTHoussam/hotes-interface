@@ -56,7 +56,7 @@ export default () => {
       date: string;
       news: string;
     }[]
-  >(newsList.slice(0, 7));
+  >(newsList.slice(0, 5));
 
   return (
     <GridContainer

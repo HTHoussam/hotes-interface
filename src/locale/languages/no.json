@@ -19,5 +19,7 @@
   "common.image.upload": "Click the image to change it",
   "home.report.modal.title": "Opprett ny rapport",
   "home.report.modal.first.tab.title": "Saksrapport",
-  "home.report.modal.second.tab.title": "Innbetaligsrappot"
+  "home.report.modal.second.tab.title": "Innbetaligsrappot",
+  "home.report.statistics.button.tooltip": "statistics",
+  "home.report.reports.button.tooltip": "reports"
 }
