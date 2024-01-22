@@ -35,7 +35,7 @@ const TodaysReports = ({ data }: { data: { title: string; value: string; href: s
         <Stack>
           <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
             <Tab eventKey="home" title={t('home.report.modal.first.tab.title')}>
-              <SaksReport />
+              <SaksReport handleCloseModal={handleOpenReportModal} />
             </Tab>
             <Tab eventKey="profile" title={t('home.report.modal.second.tab.title')}>
               Tab content for Profile

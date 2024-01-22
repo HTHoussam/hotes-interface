@@ -1,75 +1,77 @@
 import { FooterStatus } from '@/pages/home/page';
 import { Box, Stack, Typography, styled } from '@mui/material';
-import { Dispatch, SetStateAction, useCallback } from 'react';
+import { Dispatch, SetStateAction, memo, useCallback } from 'react';
 import { ArrowDownShort } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';
-const Footer = ({
-  setFooterStatus,
-  footerStatus,
-  newsList,
-}: {
-  setFooterStatus: Dispatch<SetStateAction<FooterStatus>>;
-  footerStatus: FooterStatus;
-  newsList: any[];
-}) => {
-  const { t } = useTranslation();
+const Footer = memo(
+  ({
+    setFooterStatus,
+    footerStatus,
+    newsList,
+  }: {
+    setFooterStatus: Dispatch<SetStateAction<FooterStatus>>;
+    footerStatus: FooterStatus;
+    newsList: any[];
+  }) => {
+    const { t } = useTranslation();
 
-  const toggleFooter = useCallback(() => {
-    setFooterStatus((prev) => (prev === 'collapsed' ? 'expanded' : 'collapsed'));
-  }, [setFooterStatus]);
+    const toggleFooter = useCallback(() => {
+      setFooterStatus((prev) => (prev === 'collapsed' ? 'expanded' : 'collapsed'));
+    }, [setFooterStatus]);
 
-  return (
-    <Box
-      sx={{
-        height: '100%',
-        pointerEvents: 'none',
-        zIndex: 30,
-      }}
-    >
-      <StyledFooter>
-        <Stack
-          direction={'row'}
-          sx={{
-            justifyContent: 'space-between',
-            paddingX: 2,
-            flex: 1,
-          }}
-        >
-          <Stack direction={'column'} overflow={'auto'} width={'100%'}>
-            <>
-              <Typography variant="subtitle2" fontWeight={'600'}>
-                {t('footer.title')}
-              </Typography>
-              {[...(footerStatus === 'collapsed' && newsList.length >= 7 ? newsList.slice(0, 7) : newsList)].map(
-                ({ date, news }) => (
-                  <NewsSpan key={`${date}-${news.slice(0, 5)}`} date={date} news={news} />
-                ),
-              )}
-            </>
-          </Stack>
-
-          <Circle
-            sx={
-              footerStatus === 'expanded'
-                ? {
-                    transform: '',
-                  }
-                : {
-                    transform: 'rotate(180Deg)',
-                    ':hover': {
-                      transform: 'scale(1.05) rotate(180Deg)',
-                    },
-                  }
-            }
-            onClick={toggleFooter}
+    return (
+      <Box
+        sx={{
+          height: '100%',
+          pointerEvents: 'none',
+          zIndex: 30,
+        }}
+      >
+        <StyledFooter>
+          <Stack
+            direction={'row'}
+            sx={{
+              justifyContent: 'space-between',
+              paddingX: 2,
+              flex: 1,
+            }}
           >
-            <ArrowDownShort size={35} />
-          </Circle>
-        </Stack>
-      </StyledFooter>
-    </Box>
-  );
-};
+            <Stack direction={'column'} overflow={'auto'} width={'100%'}>
+              <>
+                <Typography variant="subtitle2" fontWeight={'600'}>
+                  {t('footer.title')}
+                </Typography>
+                {[...(footerStatus === 'collapsed' && newsList.length >= 7 ? newsList.slice(0, 7) : newsList)].map(
+                  ({ date, news }) => (
+                    <NewsSpan key={`${date}-${news.slice(0, 5)}`} date={date} news={news} />
+                  ),
+                )}
+              </>
+            </Stack>
+
+            <Circle
+              sx={
+                footerStatus === 'expanded'
+                  ? {
+                      transform: '',
+                    }
+                  : {
+                      transform: 'rotate(180Deg)',
+                      ':hover': {
+                        transform: 'scale(1.05) rotate(180Deg)',
+                      },
+                    }
+              }
+              onClick={toggleFooter}
+            >
+              <ArrowDownShort size={35} />
+            </Circle>
+          </Stack>
+        </StyledFooter>
+      </Box>
+    );
+  },
+);
 export default Footer;
 
 const StyledFooter = styled(Box)(({ theme }) => ({

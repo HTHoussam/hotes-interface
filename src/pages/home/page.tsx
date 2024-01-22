@@ -8,6 +8,20 @@ import { useState } from 'react';
 import OverviewCard from './components/overview-card';
 import TodaysReports from './components/todays-reports';
 export type FooterStatus = 'expanded' | 'collapsed';
+
+const generateRandomNews = () => {
+  const randomDate = faker.date.anytime();
+  const formattedDate = dayjs(randomDate).format('DD.MM.YYYY');
+
+  const randomNews = faker.lorem.sentence();
+
+  return {
+    date: formattedDate,
+    news: randomNews,
+  };
+};
+const newsList = Array.from({ length: 13 }, generateRandomNews);
+
 export default () => {
   const data: { title: string; value: string; href: string }[] = [
     {
@@ -38,19 +52,7 @@ export default () => {
   ];
 
   const [footerStatus, setFooterStatus] = useState<FooterStatus>('collapsed');
-  const generateRandomNews = () => {
-    const randomDate = faker.date.anytime();
-    const formattedDate = dayjs(randomDate).format('DD.MM.YYYY');
 
-    const randomNews = faker.lorem.sentence();
-
-    return {
-      date: formattedDate,
-      news: randomNews,
-    };
-  };
-
-  const newsList = Array.from({ length: 13 }, generateRandomNews);
   const [newsSliced, setNewsSliced] = useState<
     {
       date: string;

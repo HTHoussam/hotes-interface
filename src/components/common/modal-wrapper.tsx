@@ -52,6 +52,7 @@ const ModalWrapper = memo(
           <Box
             sx={{
               padding: '2rem',
+              paddingTop: '1rem',
             }}
           >
             {children}
