@@ -1,16 +1,16 @@
-variables:
-  - ${{ if eq( variables['Build.SourceBranchName'], 'main') }}:
-      - group: ProdApp
-      - name: buildVersion
-        value: 'production'
-  - ${{ elseif eq( variables['Build.SourceBranchName'], 'staging')}}:
-      - group: StagingApp
-      - name: buildVersion
-        value: 'staging'
-  - ${{ else }}:
-      - group: DevApp
-      - name: buildVersion
-        value: 'develop'
+#variables:
+#  - ${{ if eq( variables['Build.SourceBranchName'], 'main') }}:
+#      - group: ProdApp
+#      - name: buildVersion
+ #       value: 'production'
+ # - ${{ elseif eq( variables['Build.SourceBranchName'], 'staging')}}:
+ #     - group: StagingApp
+ #     - name: buildVersion
+ #       value: 'staging'
+ # - ${{ else }}:
+ #     - group: DevApp
+ #     - name: buildVersion
+ #       value: 'develop'
 
   - ${{ if or(eq(variables['Build.SourceBranchName'], 'staging'), eq(variables['Build.SourceBranchName'], 'main')) }}:
       - name: isFeatureBranch
