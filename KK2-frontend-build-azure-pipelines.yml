@@ -52,8 +52,8 @@ steps:
 
   - script: |
       yarn install
-      yarn build:${{ variables.buildVersion }}
-    displayName: 'yarn install and build (${{ variables.buildVersion }})'
+      yarn build
+    displayName: 'yarn install and build'
 
   - task: ArchiveFiles@2
     displayName: 'Creating dist archive'
