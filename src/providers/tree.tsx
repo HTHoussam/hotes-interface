@@ -6,7 +6,7 @@ import { Toaster } from 'sonner';
 
 export const ProviderTree = () => (
   <ThemeProvider theme={theme}>
-    <Toaster duration={1000} richColors position="bottom-left" />
+    <Toaster duration={1500} richColors position="bottom-left" />
     <CssBaseline />
     <RouterProvider router={router} />
   </ThemeProvider>

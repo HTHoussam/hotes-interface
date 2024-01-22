@@ -50,7 +50,6 @@ const PrincipalChart = () => {
         <Pie dataKey="value" data={data} innerRadius={70} outerRadius={120} fill="#82ca9d">
           <Label value="Principal Amount" position="center" />
           {data.map((data, idx) => {
-            console.log('data', data);
             return <Cell key={`${data.value}-${idx}`} fill={data.color}></Cell>;
           })}
         </Pie>

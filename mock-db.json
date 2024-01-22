@@ -125,8 +125,143 @@
     }
   ],
   "customers": [
-    { "name": "customer1", "id": "0011", "role": "admin" },
-    { "name": "customer322", "id": "0012", "role": "user" },
-    { "name": "customer2332", "id": "0013", "role": "audit" }
+    {
+      "name": "customer1",
+      "id": "0011",
+      "role": "admin"
+    },
+    {
+      "name": "customer322",
+      "id": "0012",
+      "role": "user"
+    },
+    {
+      "name": "customer2332",
+      "id": "0013",
+      "role": "audit"
+    }
+  ],
+  "saksreport": [
+    {
+      "openCases": true,
+      "amountFrom": "1000",
+      "amountTo": "5000",
+      "caseManager": "John Doe",
+      "debtorNo": "123456",
+      "department": "Finance",
+      "terminatedUntil": "2022-12-31",
+      "inSummary": true,
+      "terminatedFrom": "2022-01-01",
+      "sorting": "asc"
+    },
+    {
+      "openCases": false,
+      "amountFrom": "500",
+      "amountTo": "2000",
+      "caseManager": "Jane Smith",
+      "debtorNo": "789012",
+      "department": "Legal",
+      "terminatedUntil": "2022-11-30",
+      "inSummary": true,
+      "terminatedFrom": "2022-02-15",
+      "sorting": "desc"
+    },
+    {
+      "id": "a74b",
+      "openCases": false,
+      "inSummary": false,
+      "sorting": "",
+      "terminatedUntil": "",
+      "terminatedFrom": "Mon, 01 Jan 2024 23:00:00 GMT",
+      "debtorNo": "",
+      "department": "",
+      "caseManager": "",
+      "amountTo": "5454",
+      "amountFrom": "54"
+    },
+    {
+      "id": "ed27",
+      "openCases": false,
+      "inSummary": false,
+      "sorting": "",
+      "terminatedUntil": "",
+      "terminatedFrom": "Mon, 01 Jan 2024 23:00:00 GMT",
+      "debtorNo": "e3",
+      "department": "e3",
+      "caseManager": "",
+      "amountTo": "5454",
+      "amountFrom": "54"
+    },
+    {
+      "id": "210f",
+      "openCases": false,
+      "inSummary": true,
+      "sorting": "third",
+      "terminatedUntil": "Thu, 04 Jan 2024 23:00:00 GMT",
+      "terminatedFrom": "Mon, 01 Jan 2024 23:00:00 GMT",
+      "debtorNo": "dede",
+      "department": "dede",
+      "caseManager": "",
+      "amountTo": "dedede",
+      "amountFrom": "deded"
+    },
+    {
+      "id": "83a9",
+      "openCases": false,
+      "inSummary": true,
+      "sorting": "third",
+      "terminatedUntil": "Thu, 04 Jan 2024 23:00:00 GMT",
+      "terminatedFrom": "Mon, 01 Jan 2024 23:00:00 GMT",
+      "debtorNo": "dede",
+      "department": "dede",
+      "caseManager": "",
+      "amountTo": "dedede",
+      "amountFrom": "3d"
+    },
+    {
+      "id": "a504",
+      "openCases": false,
+      "amountFrom": "ede",
+      "amountTo": "dede",
+      "caseManager": "",
+      "debtorNo": "",
+      "department": "",
+      "terminatedUntil": "",
+      "inSummary": false,
+      "terminatedFrom": "",
+      "sorting": ""
+    }
+  ],
+  "departments": [
+    "Sales",
+    "Marketing",
+    "IT",
+    "HR",
+    "Logistics",
+    "Sales",
+    "Marketing",
+    "IT",
+    "HR",
+    "Logistics",
+    "Sales",
+    "Marketing",
+    "IT",
+    "HR",
+    "Logistics",
+    "Sales",
+    "Marketing",
+    "IT",
+    "HR",
+    "Logistics",
+    "Sales",
+    "Marketing",
+    "IT",
+    "HR",
+    "Logistics",
+    "Sales",
+    "Marketing",
+    "IT",
+    "HR",
+    "Logistics"
   ]
 }
