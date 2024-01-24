@@ -48,10 +48,6 @@ export const theme = createTheme({
           color: 'inherit',
           textDecoration: 'none',
         },
-        // '#root': {
-        //   minHeight: '100vh',
-        //   overflowX: 'hidden',
-        // },
         '*::-webkit-scrollbar': {
           '--thumb-thickness': '0.75rem',
           backgroundColor: 'transparent',
@@ -106,7 +102,7 @@ export const theme = createTheme({
         },
       },
     },
-    /** overriding position of textfield label to match small size input*/
+    /** overriding position of textfield label to match small size input */
     MuiInputLabel: {
       styleOverrides: {
         sizeSmall: {
@@ -132,6 +128,8 @@ export const theme = createTheme({
     MuiIconButton: {
       styleOverrides: {
         root: ({ theme }) => ({
+          width: 'auto',
+          maxWidth: '15rem',
           color: theme.palette.primary.main,
         }),
       },
@@ -139,9 +137,6 @@ export const theme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          // borderRadius: '10px',
-          // boxShadow: '2px 2px 7px 0px rgba(0, 0, 0, 0.15)',
-          // height: '100%',
           width: '100%',
         },
       },

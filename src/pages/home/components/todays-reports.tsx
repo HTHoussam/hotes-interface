@@ -3,7 +3,7 @@ import { Box, Stack } from '@mui/material';
 import { useCallback, useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { FirstCardTitle, SaksReport } from '.';
+import { FirstCardTitle, InnbetaligsRapport, SaksReport } from '.';
 import PrincipalChart from './principal-chart';
 
 const TodaysReports = ({ data }: { data: { title: string; value: string; href: string }[] }) => {
@@ -28,17 +28,16 @@ const TodaysReports = ({ data }: { data: { title: string; value: string; href: s
         open={openReportModal}
         handleOpenState={handleOpenReportModal}
         modalWidth={'1040px'}
-        modalHeight={'584px'}
         title={t('home.report.modal.title')}
         actionStack={undefined}
       >
         <Stack>
-          <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
+          <Tabs style={{}} defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
             <Tab eventKey="home" title={t('home.report.modal.first.tab.title')}>
               <SaksReport handleCloseModal={handleOpenReportModal} />
             </Tab>
             <Tab eventKey="profile" title={t('home.report.modal.second.tab.title')}>
-              Tab content for Profile
+              <InnbetaligsRapport />
             </Tab>
           </Tabs>
         </Stack>

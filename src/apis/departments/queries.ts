@@ -7,7 +7,7 @@ const getDepartments = async () => {
   return await axiosInstance.get('/departments').then((res) => res.data);
 };
 export const useGetDepartments = () => {
-  return useQuery<string[]>({
+  return useQuery<{ name: string }[]>({
     queryKey: DepartmentsQueryKeys.fetchDepartments(),
     queryFn: () => getDepartments(),
   });

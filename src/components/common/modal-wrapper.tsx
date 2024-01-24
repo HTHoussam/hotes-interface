@@ -6,22 +6,12 @@ interface ModalWrapperProps {
   open: boolean;
   handleOpenState: (val: boolean) => void;
   modalWidth: string;
-  modalHeight: string;
   title: string;
   actionStack: ReactNode;
   paperProps?: PaperProps;
 }
 const ModalWrapper = memo(
-  ({
-    children,
-    open,
-    handleOpenState,
-    paperProps = {},
-    modalWidth,
-    modalHeight,
-    title,
-    actionStack,
-  }: ModalWrapperProps) => {
+  ({ children, open, handleOpenState, paperProps = {}, modalWidth, title, actionStack }: ModalWrapperProps) => {
     return (
       <Modal open={open} onClose={() => handleOpenState(false)}>
         <Paper
@@ -29,9 +19,8 @@ const ModalWrapper = memo(
           sx={{
             overflow: 'auto',
             width: '100%',
-            height: '100%',
+            height: 'auto',
             maxWidth: modalWidth,
-            maxHeight: modalHeight,
           }}
         >
           <Stack

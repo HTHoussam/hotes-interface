@@ -1,20 +1,22 @@
 import { useGetDepartments } from '@/apis/departments/queries';
 import { useCreateSaksReport } from '@/apis/reports/mutation';
-import { ControlledFormInput, FormInputDropdownBootstrap } from '@/components/common';
+import { ActionsButton, ControlledFormInput, FormInputDropdownBootstrap } from '@/components/common';
 import useEnhancedForm from '@/hooks/use-enhanced-form';
 import { SaksReportSchema, SaksReportSchemaType } from '@/libs/validationSchemas';
-import { Box, Button, Checkbox, IconButton, Stack, Typography, styled } from '@mui/material';
+import { Box, Checkbox, IconButton, Stack, Typography, styled } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/de';
 import { useCallback, useMemo } from 'react';
 import { InfoCircle, XCircleFill } from 'react-bootstrap-icons';
 import { Controller } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 interface SaksReportProps {
   handleCloseModal: (val: boolean) => void;
 }
 const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
+  const { t } = useTranslation();
   const { mutate: createSaksReport } = useCreateSaksReport();
   const { data: fetchedDepartments } = useGetDepartments();
   const { control, setValue, handleSubmit } = useEnhancedForm({
@@ -44,8 +46,8 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
   const departmentsOptions: { label: string; value: string }[] = useMemo(() => {
     if (!fetchedDepartments) return [];
     return fetchedDepartments.map((dep) => ({
-      label: dep,
-      value: dep,
+      label: dep.name,
+      value: dep.name,
     }));
   }, [fetchedDepartments]);
   return (
@@ -59,11 +61,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
               textWrap: 'wrap',
             }}
           >
-            <Typography>
-              Her kan du søke på beløpsgrenser og/eller spesifikke avdelinger (oppdragsgivere).Noen av disse rapportene
-              kan inneholde mye data og kan ta litt tid å få generert og lastet inn i din nettleser.Disse rapportene er
-              et snap-shot av hvilke saker som ligger i KK2, så disse rapportene kan derfor endre seg fra dag til dag.
-            </Typography>
+            <Typography>{t('home.report.modal.form.saks.report.description')}</Typography>
           </Box>
         </Stack>
         <form
@@ -75,7 +73,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
           <GridContainer>
             <StyledInputStack>
               <InputStack direction={'row'}>
-                <InputLabel variant="body2">Belop fra:</InputLabel>
+                <InputLabel variant="body2">{t('home.report.modal.form.label.belopFra')}:</InputLabel>
                 <Box flex={1.5}>
                   <ControlledFormInput
                     controllerProps={{ name: 'amountFrom', control }}
@@ -101,7 +99,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
                 </Box>
               </InputStack>
               <InputStack direction={'row'}>
-                <InputLabel variant="body2">Belop til:</InputLabel>
+                <InputLabel variant="body2">{t('home.report.modal.form.label.belopTil')}:</InputLabel>
                 <Box flex={1.5}>
                   <ControlledFormInput
                     controllerProps={{ name: 'amountTo', control }}
@@ -128,7 +126,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
               </InputStack>
 
               <InputStack>
-                <InputLabel variant="body2">Saksbenhandler:</InputLabel>
+                <InputLabel variant="body2">{t('home.report.modal.form.label.saksbenhandler')}:</InputLabel>
                 <Box flex={1.5}>
                   <FormInputDropdownBootstrap
                     options={departmentsOptions}
@@ -139,7 +137,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
                 </Box>
               </InputStack>
               <InputStack>
-                <InputLabel variant="body2">Avdeling:</InputLabel>
+                <InputLabel variant="body2">{t('home.report.modal.form.label.avdeling')}:</InputLabel>
                 <Box flex={1.5}>
                   <ControlledFormInput
                     controllerProps={{ name: 'department', control }}
@@ -165,7 +163,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
                 </Box>
               </InputStack>
               <InputStack>
-                <InputLabel variant="body2">Debitor nr:</InputLabel>
+                <InputLabel variant="body2">{t('home.report.modal.form.label.debitornr')}:</InputLabel>
                 <Box flex={1.5}>
                   <ControlledFormInput
                     controllerProps={{ name: 'debtorNo', control }}
@@ -193,7 +191,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
             </StyledInputStack>
             <StyledInputStack>
               <InputStack>
-                <InputLabel variant="body2">Avsluttet fra:</InputLabel>
+                <InputLabel variant="body2">{t('home.report.modal.form.label.avsluttetFra')}:</InputLabel>
                 <Box flex={1.5}>
                   <Controller
                     control={control}
@@ -204,7 +202,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
                           sx={{
                             width: '100%',
                           }}
-                          label={'Avsluttet fra'}
+                          label={t('home.report.modal.form.label.avsluttetFra')}
                           format="YYYY-MM-DD"
                           name={name}
                           onChange={onChange}
@@ -215,7 +213,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
                 </Box>
               </InputStack>
               <InputStack>
-                <InputLabel variant="body2">Avsluttet til:</InputLabel>
+                <InputLabel variant="body2">{t('home.report.modal.form.label.avsluttetTil')}:</InputLabel>
                 <Box flex={1.5}>
                   <Controller
                     control={control}
@@ -226,7 +224,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
                           sx={{
                             width: '100%',
                           }}
-                          label={'Avsluttet til'}
+                          label={t('home.report.modal.form.label.avsluttetTil')}
                           format="YYYY-MM-DD"
                           name={name}
                           onChange={onChange}
@@ -237,7 +235,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
                 </Box>
               </InputStack>
               <InputStack>
-                <InputLabel variant="body2">Sortering:</InputLabel>
+                <InputLabel variant="body2">{t('home.report.modal.form.label.sortering')}:</InputLabel>
                 <Box flex={1.5}>
                   <FormInputDropdownBootstrap
                     options={[
@@ -252,7 +250,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
                 </Box>
               </InputStack>
               <InputStack>
-                <InputLabel variant="body2">Summert:</InputLabel>
+                <InputLabel variant="body2">{t('home.report.modal.form.label.summert')}:</InputLabel>
                 <Box flex={1.5}>
                   <Controller
                     name={'inSummary'}
@@ -264,7 +262,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
                 </Box>
               </InputStack>
               <InputStack>
-                <InputLabel variant="body2">Apne sake i nye vinduer:</InputLabel>
+                <InputLabel variant="body2">{t('home.report.modal.form.label.apneSake')}:</InputLabel>
                 <Box flex={1.5}>
                   <Controller
                     name={'openCases'}
@@ -278,21 +276,13 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
             </StyledInputStack>
           </GridContainer>
         </form>
-        <Stack
-          sx={{
-            flexDirection: 'row',
-            gap: 2,
-            marginLeft: 'auto',
-            maringTop: '2rem',
-          }}
-        >
-          <Button onClick={() => handleCloseModal(false)} color="secondary">
-            Cancel
-          </Button>
-          <Button type="submit" form="report-form">
-            Submit
-          </Button>
-        </Stack>
+
+        <ActionsButton
+          discardTitle={t('home.report.modal.form.discard.button.title')}
+          formId="report-form"
+          handleDiscard={() => handleCloseModal(false)}
+          submitTitle={t('home.report.modal.form.submit.button.title')}
+        />
       </Stack>
     </LocalizationProvider>
   );

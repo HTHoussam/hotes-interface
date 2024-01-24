@@ -19,7 +19,21 @@
   "common.image.upload": "Click the image to change it",
   "home.report.modal.title": "Opprett ny rapport",
   "home.report.modal.first.tab.title": "Saksrapport",
-  "home.report.modal.second.tab.title": "Innbetaligsrappot",
+  "home.report.modal.second.tab.title": "Innbetaligsrapport",
   "home.report.statistics.button.tooltip": "statistics",
-  "home.report.reports.button.tooltip": "reports"
+  "home.report.reports.button.tooltip": "reports",
+  "home.report.modal.form.label.belopFra": "Belop fra",
+  "home.report.modal.form.label.BelopTil": "Belop til",
+  "home.report.modal.form.label.saksbenhandler": "Saksbenhandler",
+  "home.report.modal.form.label.avdeling": "Avdeling",
+  "home.report.modal.form.label.debitornr": "Debitor nr",
+  "home.report.modal.form.label.avsluttetFra": "Avsluttet fra",
+  "home.report.modal.form.label.avsluttetTil": "Avsluttet til",
+  "home.report.modal.form.label.sortering": "Sortering",
+  "home.report.modal.form.label.summert": "Summert",
+  "home.report.modal.form.label.apneSake": "Apne sake i nye vinduer",
+  "home.report.modal.form.saks.report.description": "Her kan du søke på beløpsgrenser og/eller spesifikke avdelinger (oppdragsgivere).Noen av disse rapportene kan inneholde mye data og kan ta litt tid å få generert og lastet inn i din nettleser.Disse rapportene er et snap-shot av hvilke saker som ligger i KK2, så disse rapportene kan derfor endre seg fra dag til dag.",
+  "home.report.modal.form.innbetaligs.label.periodeTil": "Periode til",
+  "home.report.modal.form.submit.button.title": "LAG RAPPORT",
+  "home.report.modal.form.discard.button.title": "Avbryt"
 }

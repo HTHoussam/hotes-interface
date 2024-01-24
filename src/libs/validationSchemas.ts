@@ -17,3 +17,10 @@ export const SaksReportSchema = yup.object({
   openCases: yup.boolean().optional(),
 });
 export type SaksReportSchemaType = yup.InferType<typeof SaksReportSchema>;
+
+export const InnbetaligsSchema = yup.object({
+  periodeFrom: yup.string().optional(),
+  periodeUntil: yup.string().optional(),
+  avdeling: yup.string().optional(),
+});
+export type InnbetaligsSchemaType = yup.InferType<typeof InnbetaligsSchema>;

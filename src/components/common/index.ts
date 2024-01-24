@@ -1,3 +1,4 @@
+export { default as ActionsButton } from './actions-button';
 export { ControlledFormInput, FormInputDropdown, FormInputDropdownBootstrap } from './controlled-inputs';
 export { default as ErrorBoundary } from './error-boundary';
 export { default as LanguageSelector } from './language-selector';
