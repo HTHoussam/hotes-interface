@@ -37,7 +37,7 @@ const TodaysReports = ({ data }: { data: { title: string; value: string; href: s
               <SaksReport handleCloseModal={handleOpenReportModal} />
             </Tab>
             <Tab eventKey="profile" title={t('home.report.modal.second.tab.title')}>
-              <InnbetaligsRapport />
+              <InnbetaligsRapport handleCloseModal={handleOpenReportModal} />
             </Tab>
           </Tabs>
         </Stack>

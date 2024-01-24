@@ -28,9 +28,9 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
       caseManager: '',
       debtorNo: '',
       department: '',
-      terminatedUntil: '',
+      terminatedUntil: new Date(),
       inSummary: false,
-      terminatedFrom: '',
+      terminatedFrom: new Date(),
       sorting: '',
     },
   });

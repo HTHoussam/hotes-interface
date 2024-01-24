@@ -10,8 +10,8 @@ export const SaksReportSchema = yup.object({
   caseManager: yup.string().optional(),
   department: yup.string().optional(),
   debtorNo: yup.string().optional(),
-  terminatedFrom: yup.string().optional(),
-  terminatedUntil: yup.string().optional(),
+  terminatedFrom: yup.date(),
+  terminatedUntil: yup.date().min(yup.ref('terminatedFrom')),
   sorting: yup.string().optional(),
   inSummary: yup.boolean().optional(),
   openCases: yup.boolean().optional(),
@@ -19,8 +19,8 @@ export const SaksReportSchema = yup.object({
 export type SaksReportSchemaType = yup.InferType<typeof SaksReportSchema>;
 
 export const InnbetaligsSchema = yup.object({
-  periodeFrom: yup.string().optional(),
-  periodeUntil: yup.string().optional(),
+  periodeFrom: yup.date().optional(),
+  periodeUntil: yup.date().min(yup.ref('terminatedFrom')),
   avdeling: yup.string().optional(),
 });
 export type InnbetaligsSchemaType = yup.InferType<typeof InnbetaligsSchema>;

@@ -284,6 +284,19 @@
       "inSummary": true,
       "terminatedFrom": "",
       "sorting": "second"
+    },
+    {
+      "id": "a558",
+      "openCases": false,
+      "inSummary": false,
+      "sorting": "",
+      "terminatedUntil": "2024-01-02T23:00:00.000Z",
+      "terminatedFrom": "2024-01-01T23:00:00.000Z",
+      "debtorNo": "",
+      "department": "",
+      "caseManager": "",
+      "amountTo": "dede",
+      "amountFrom": "de"
     }
   ],
   "departments": [

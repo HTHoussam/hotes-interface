@@ -8,13 +8,13 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-const InnbetaligsRapport = () => {
+const InnbetaligsRapport = ({ handleCloseModal }: { handleCloseModal: (val: boolean) => void }) => {
   const { t } = useTranslation();
   const { control } = useEnhancedForm({
     schema: InnbetaligsSchema,
     defaultValues: {
-      periodeFrom: '',
-      periodeUntil: '',
+      periodeFrom: new Date(),
+      periodeUntil: new Date(),
       avdeling: '',
     },
   });
@@ -109,7 +109,9 @@ const InnbetaligsRapport = () => {
         <ActionsButton
           discardTitle={t('home.report.modal.form.discard.button.title')}
           formId="InnbetaligsRapport-form"
-          handleDiscard={() => {}}
+          handleDiscard={() => {
+            handleCloseModal(false);
+          }}
           submitTitle={t('home.report.modal.form.submit.button.title')}
         />
       </Stack>
