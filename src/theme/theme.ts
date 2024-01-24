@@ -128,8 +128,6 @@ export const theme = createTheme({
     MuiIconButton: {
       styleOverrides: {
         root: ({ theme }) => ({
-          width: 'auto',
-          maxWidth: '15rem',
           color: theme.palette.primary.main,
         }),
       },
@@ -148,7 +146,7 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           boxShadow: 'none',
-          maxWidth: '115px',
+
           maxHeight: '48px',
           padding: '8px 16px',
           borderRadius: '5px',

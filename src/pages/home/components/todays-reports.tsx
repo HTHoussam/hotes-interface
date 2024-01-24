@@ -5,7 +5,7 @@ import { Tab, Tabs } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { FirstCardTitle, InnbetaligsRapport, SaksReport } from '.';
 import PrincipalChart from './principal-chart';
-
+import './todays-report.css';
 const TodaysReports = ({ data }: { data: { title: string; value: string; href: string }[] }) => {
   const { t } = useTranslation();
   const [openReportModal, setOpenReportModal] = useState(false);
