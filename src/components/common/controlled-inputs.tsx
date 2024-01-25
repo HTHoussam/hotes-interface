@@ -83,8 +83,8 @@ export const FormInputDropdownBootstrap = <T extends Record<string, any>>({
 }: FormInputDropdownBootstrapProps<T>): React.ReactElement => {
   return (
     <Controller
-      render={({ field: { onChange } }) => (
-        <SecondaryDropDown options={options} title={title} handleChange={onChange} />
+      render={({ field: { onChange, value } }) => (
+        <SecondaryDropDown options={options} value={value} title={title} handleChange={onChange} />
       )}
       {...controllerProps}
     />

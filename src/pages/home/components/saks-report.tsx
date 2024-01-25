@@ -7,7 +7,7 @@ import { Box, Checkbox, IconButton, Stack, Typography, styled } from '@mui/mater
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/de';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { InfoCircle, XCircleFill } from 'react-bootstrap-icons';
 import { Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -19,7 +19,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
   const { t } = useTranslation();
   const { mutate: createSaksReport } = useCreateSaksReport();
   const { data: fetchedDepartments } = useGetDepartments();
-  const { control, setValue, handleSubmit } = useEnhancedForm({
+  const { control, setValue, handleSubmit, resetField } = useEnhancedForm({
     schema: SaksReportSchema,
     defaultValues: {
       openCases: false,
@@ -27,11 +27,11 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
       amountTo: '',
       caseManager: '',
       debtorNo: '',
-      department: '',
+      department: fetchedDepartments?.[0].name,
       terminatedUntil: new Date(),
       inSummary: false,
       terminatedFrom: new Date(),
-      sorting: '',
+      sorting: 'third',
     },
   });
 
@@ -50,6 +50,14 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
       value: dep.name,
     }));
   }, [fetchedDepartments]);
+
+  useEffect(() => {
+    if (!fetchedDepartments || fetchedDepartments.length <= 0) return;
+    resetField('department', {
+      defaultValue: fetchedDepartments[0].name,
+    });
+  }, [fetchedDepartments, resetField]);
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
       <Stack gap={4}>
@@ -131,8 +139,8 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
                   <FormInputDropdownBootstrap
                     options={departmentsOptions}
                     control={control}
-                    name="sorting"
-                    title="Terabyte-test:"
+                    name="department"
+                    title={'anyhting'}
                   />
                 </Box>
               </InputStack>

@@ -28,7 +28,11 @@ export const useKeyShortcuts = () => {
       if (isInputOrTextArea) {
         return;
       }
-      navigate(keysUrl[event.key.toLowerCase()]);
+      const shortcutUrl = keysUrl[event.key.toLowerCase()];
+
+      if (shortcutUrl) {
+        navigate(shortcutUrl);
+      }
     },
     [navigate],
   );

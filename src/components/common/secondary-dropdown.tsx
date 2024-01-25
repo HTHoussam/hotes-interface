@@ -5,14 +5,15 @@ interface SecondaryDropDownProps {
   options: { value: string; label: string }[];
   title: string;
   handleChange: (value: string | null) => void;
+  value: string;
 }
-const SecondaryDropDown = memo(({ options, title, handleChange }: SecondaryDropDownProps) => {
+const SecondaryDropDown = memo(({ options, handleChange, value }: SecondaryDropDownProps) => {
   return (
     <DropdownButton
       as={ButtonGroup}
       id={`dropdown-variants-secondary`}
       variant={'secondary'}
-      title={title}
+      title={value}
       onSelect={handleChange}
       style={{
         width: '100%',

@@ -10,7 +10,6 @@ describe('test <ModalWrapper/>', () => {
         open={true}
         handleOpenState={mockFn}
         modalWidth={'450'}
-        modalHeight={'650'}
         title={'ModalTitle'}
         actionStack={<div></div>}
       >
@@ -28,7 +27,6 @@ describe('test <ModalWrapper/>', () => {
         open={false}
         handleOpenState={mockFn}
         modalWidth={'450'}
-        modalHeight={'650'}
         title={'ModalTitle'}
         actionStack={<div></div>}
       >

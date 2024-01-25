@@ -7,7 +7,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-
 const InnbetaligsRapport = ({ handleCloseModal }: { handleCloseModal: (val: boolean) => void }) => {
   const { t } = useTranslation();
   const { control } = useEnhancedForm({
@@ -15,7 +14,7 @@ const InnbetaligsRapport = ({ handleCloseModal }: { handleCloseModal: (val: bool
     defaultValues: {
       periodeFrom: new Date(),
       periodeUntil: new Date(),
-      avdeling: '',
+      avdeling: 'test2',
     },
   });
   return (
@@ -91,12 +90,16 @@ const InnbetaligsRapport = ({ handleCloseModal }: { handleCloseModal: (val: bool
               <FormInputDropdownBootstrap
                 options={[
                   {
-                    label: 'dedee2',
-                    value: 'dede5',
+                    label: 'test1',
+                    value: 'test1',
                   },
                   {
-                    label: 'demd',
-                    value: 'dede',
+                    label: 'test2',
+                    value: 'test2',
+                  },
+                  {
+                    label: 'test3',
+                    value: 'test3',
                   },
                 ]}
                 control={control}
