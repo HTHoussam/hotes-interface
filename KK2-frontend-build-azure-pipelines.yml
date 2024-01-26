@@ -52,7 +52,7 @@ steps:
 
   - script: |
       yarn install
-      yarn build:${{ variables.buildVersion }}
+      yarn build
     displayName: 'yarn install and build (${{ variables.buildVersion }})'
 
   - task: ArchiveFiles@2
