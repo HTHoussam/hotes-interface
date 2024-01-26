@@ -26,6 +26,7 @@ const MainCard = ({ maxWidth, cardProps, cardContentProps, cardActions, title, c
       }}
     >
       <CardContent
+        data-testid="mainCard-cardContent"
         sx={{
           display: 'flex',
           flexDirection: 'column',
