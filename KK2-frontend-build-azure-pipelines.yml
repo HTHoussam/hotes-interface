@@ -1,14 +1,14 @@
 variables:
   - ${{ if eq( variables['Build.SourceBranchName'], 'main') }}:
-      #- group: ProdApp
+      - group: ProdApp
       - name: buildVersion
         value: 'production'
   - ${{ elseif eq( variables['Build.SourceBranchName'], 'staging')}}:
-      #- group: StagingApp
+      - group: StagingApp
       - name: buildVersion
         value: 'staging'
   - ${{ else }}:
-      #- group: DevApp
+      - group: DevApp
       - name: buildVersion
         value: 'develop'
 
@@ -27,7 +27,7 @@ pool:
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: '20.x'
+      versionSpec: '16.x'
     displayName: 'Install Node.js'
 
   - task: DeleteFiles@1
@@ -52,8 +52,8 @@ steps:
 
   - script: |
       yarn install
-      yarn build
-    displayName: 'yarn install and build'
+      yarn build:${{ variables.buildVersion }}
+    displayName: 'yarn install and build (${{ variables.buildVersion }})'
 
   - task: ArchiveFiles@2
     displayName: 'Creating dist archive'
