@@ -3,7 +3,7 @@ import { Footer } from '@/components/layout/UI';
 import { faker } from '@faker-js/faker';
 
 import { Box, Stack, styled } from '@mui/material';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import { useState } from 'react';
 import OverviewCard from './components/overview-card';
 import TodaysReports from './components/todays-reports';
