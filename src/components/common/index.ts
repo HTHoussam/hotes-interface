@@ -7,4 +7,4 @@ export { default as ModalWrapper } from './modal-wrapper';
 export { CustomSearchButton as OutlinedSearchTextField } from './outlined-search';
 export { default as SecondaryDropDown } from './secondary-dropdown';
 export { default as StackedDataRows } from './stacked-data-rows';
-export { PageTitle } from './styled-components';
+export { InvertColorCard, PageTitle } from './styled-components';

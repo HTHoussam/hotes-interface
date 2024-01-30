@@ -65,3 +65,15 @@ export const OutlinedSelect = styled(Select)(({ theme }) => ({
   lineHeight: '18px',
   marginRight: '25px',
 }));
+
+export const InvertColorCard = styled(Stack)<{ invertedcolor?: boolean }>(({ invertedcolor = false }) => ({
+  padding: '1rem 2.5rem 1rem 1rem',
+  borderRadius: '4px',
+  textAlign: 'center',
+  backgroundColor: invertedcolor ? 'rgba(1, 16, 67, 0.8)' : 'rgba(243, 244, 247, 1)',
+  color: !invertedcolor ? 'rgba(1, 16, 67, 0.8)' : 'rgba(243, 244, 247, 1)',
+  minHeight: '9rem',
+  minWidth: '7.6rem',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));

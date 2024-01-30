@@ -1,4 +1,4 @@
-import { MainCard } from '@/components/common';
+import { MainCard, StackedDataRows } from '@/components/common';
 import { Footer } from '@/components/layout/UI';
 import { faker } from '@faker-js/faker';
 
@@ -36,7 +36,7 @@ export default () => {
     },
     {
       href: '',
-      title: 'Balace on active cases',
+      title: 'Balance on active cases',
       value: '480.849.866',
     },
     {
@@ -102,7 +102,22 @@ export default () => {
               },
             }}
           >
-            <Box></Box>
+            <Box>
+              <StackedDataRows
+                data={[
+                  { value: 0, title: 'Saker til vurdering' },
+                  { value: 0, title: 'Saker vurdert restpurring' },
+                  { value: 0, title: 'Tiltak klare til utsending' },
+                ]}
+                contentStackProps={{
+                  sx: {
+                    minHeight: '1rem',
+                    fontSize: '12px',
+                    padding: '0.25rem',
+                  },
+                }}
+              ></StackedDataRows>
+            </Box>
           </MainCard>
           <MainCard
             title="Overview"

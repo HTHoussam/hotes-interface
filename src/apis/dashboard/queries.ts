@@ -16,9 +16,10 @@ export const useGetModules = () => {
   });
 };
 
-interface Overview {
+export interface Overview {
   title: string;
   value: number;
+  url?: string;
 }
 const getOverview = async () => {
   return await axiosInstance.get<Overview[]>('/overview').then((res) => res.data);

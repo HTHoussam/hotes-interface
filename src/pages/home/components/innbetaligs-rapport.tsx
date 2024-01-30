@@ -1,4 +1,4 @@
-import { ActionsButton, FormInputDropdownBootstrap } from '@/components/common';
+import { ActionsButton, FormInputDropdown } from '@/components/common';
 import useEnhancedForm from '@/hooks/use-enhanced-form';
 import { InnbetaligsSchema } from '@/libs/validationSchemas';
 import { Stack, Typography, styled } from '@mui/material';
@@ -42,7 +42,7 @@ const InnbetaligsRapport = ({ handleCloseModal }: { handleCloseModal: (val: bool
                           width: '100%',
                         }}
                         label={'Periode fra'}
-                        format="YYYY-MM-DD"
+                        format="DD.MM.YYYY"
                         name={name}
                         onChange={onChange}
                       />
@@ -69,7 +69,7 @@ const InnbetaligsRapport = ({ handleCloseModal }: { handleCloseModal: (val: bool
                           width: '100%',
                         }}
                         label={'Periode fra'}
-                        format="YYYY-MM-DD"
+                        format="DD.MM.YYYY"
                         name={name}
                         onChange={onChange}
                       />
@@ -78,7 +78,11 @@ const InnbetaligsRapport = ({ handleCloseModal }: { handleCloseModal: (val: bool
                 />
               </RowFlex>
             </Stack>
-            <RowFlex>
+            <RowFlex
+              sx={{
+                width: '34%',
+              }}
+            >
               <Typography
                 sx={{
                   minWidth: '6rem',
@@ -87,7 +91,7 @@ const InnbetaligsRapport = ({ handleCloseModal }: { handleCloseModal: (val: bool
               >
                 {t('home.report.modal.form.label.avdeling')}:
               </Typography>
-              <FormInputDropdownBootstrap
+              <FormInputDropdown
                 options={[
                   {
                     label: 'test1',
@@ -103,8 +107,21 @@ const InnbetaligsRapport = ({ handleCloseModal }: { handleCloseModal: (val: bool
                   },
                 ]}
                 control={control}
+                selectProps={{
+                  fullWidth: true,
+                  size: 'small',
+                  MenuProps: {
+                    sx: {
+                      width: 'fit-content',
+                      '.MuiPaper-root': {
+                        overflow: 'auto',
+                        maxHeight: '10rem',
+                        scrollBehavior: 'smooth',
+                      },
+                    },
+                  },
+                }}
                 name="avdeling"
-                title="Select"
               />
             </RowFlex>
           </Stack>

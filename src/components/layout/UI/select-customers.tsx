@@ -35,7 +35,7 @@ const SelectCustomers = () => {
       }}
     >
       {customers.map(({ name, id }) => (
-        <MenuItem key={id} value="customer1">
+        <MenuItem key={id} value={name}>
           {name}
         </MenuItem>
       ))}

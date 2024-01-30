@@ -22,7 +22,7 @@ const UserDropDown = () => {
                 maxHeight: '30rem',
                 maxWidth: '12rem',
                 top: '4rem !important',
-                left: 'Calc(100vw - 9.5rem*2) !important',
+                left: 'Calc(100vw - 7.5rem*2) !important',
               },
             },
           }}
@@ -73,9 +73,7 @@ const UserDropDown = () => {
           <MenuItem value={30}>
             <Stack direction={'row'} alignItems={'center'} gap={2}>
               <BoxArrowRight size={15} />
-              <Typography variant="subtitle1" fontWeight={500}>
-                {t('common.title.Logout')}
-              </Typography>
+              <Typography variant="subtitle2">{t('common.title.Logout')}</Typography>
             </Stack>
           </MenuItem>
         </OutlinedSelect>

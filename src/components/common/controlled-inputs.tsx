@@ -35,14 +35,16 @@ export const ControlledFormInput = <T extends Record<string, any>>({
 /**
  * Dropdown Controlled input using MUI Select
  */
-interface FormInputDropdownProps<T> extends UseControllerProps {
+interface FormInputDropdownProps<T extends FieldValues> extends UseControllerProps {
   selectProps?: SelectProps<T>;
   options: { label: string; value: string }[];
+  control: Control<T>;
 }
 
-export const FormInputDropdown = <T,>({
+export const FormInputDropdown = <T extends FieldValues>({
   selectProps,
   options,
+  control,
   ...controllerProps
 }: FormInputDropdownProps<T>): React.ReactElement => {
   const generateSingleOptions = () => {
@@ -62,6 +64,7 @@ export const FormInputDropdown = <T,>({
           {generateSingleOptions()}
         </Select>
       )}
+      control={control}
       {...controllerProps}
     />
   );

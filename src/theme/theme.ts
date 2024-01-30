@@ -71,6 +71,7 @@ export const theme = createTheme({
         },
       },
     },
+
     MuiSelect: {
       styleOverrides: {
         root: {
@@ -78,6 +79,7 @@ export const theme = createTheme({
         },
       },
     },
+
     MuiAlert: {
       styleOverrides: {
         root: {

@@ -1,6 +1,6 @@
 import { useGetDepartments } from '@/apis/departments/queries';
 import { useCreateSaksReport } from '@/apis/reports/mutation';
-import { ActionsButton, ControlledFormInput, FormInputDropdownBootstrap } from '@/components/common';
+import { ActionsButton, ControlledFormInput, FormInputDropdown } from '@/components/common';
 import useEnhancedForm from '@/hooks/use-enhanced-form';
 import { SaksReportSchema, SaksReportSchemaType } from '@/libs/validationSchemas';
 import { Box, Checkbox, IconButton, Stack, Typography, styled } from '@mui/material';
@@ -136,11 +136,24 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
               <InputStack>
                 <InputLabel variant="body2">{t('home.report.modal.form.label.saksbenhandler')}:</InputLabel>
                 <Box flex={1.5}>
-                  <FormInputDropdownBootstrap
+                  <FormInputDropdown
                     options={departmentsOptions}
                     control={control}
+                    selectProps={{
+                      fullWidth: true,
+                      size: 'small',
+                      MenuProps: {
+                        sx: {
+                          width: 'fit-content',
+                          '.MuiPaper-root': {
+                            overflow: 'auto',
+                            maxHeight: '10rem',
+                            scrollBehavior: 'smooth',
+                          },
+                        },
+                      },
+                    }}
                     name="department"
-                    title={'anyhting'}
                   />
                 </Box>
               </InputStack>
@@ -211,7 +224,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
                             width: '100%',
                           }}
                           label={t('home.report.modal.form.label.avsluttetFra')}
-                          format="YYYY-MM-DD"
+                          format="DD.MM.YYYY"
                           name={name}
                           onChange={onChange}
                         />
@@ -233,7 +246,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
                             width: '100%',
                           }}
                           label={t('home.report.modal.form.label.avsluttetTil')}
-                          format="YYYY-MM-DD"
+                          format="DD.MM.YYYY"
                           name={name}
                           onChange={onChange}
                         />
@@ -245,15 +258,28 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
               <InputStack>
                 <InputLabel variant="body2">{t('home.report.modal.form.label.sortering')}:</InputLabel>
                 <Box flex={1.5}>
-                  <FormInputDropdownBootstrap
+                  <FormInputDropdown
                     options={[
                       { label: 'first', value: 'first' },
                       { label: 'second', value: 'second' },
                       { label: 'third', value: 'third' },
                     ]}
                     control={control}
+                    selectProps={{
+                      fullWidth: true,
+                      size: 'small',
+                      MenuProps: {
+                        sx: {
+                          width: 'fit-content',
+                          '.MuiPaper-root': {
+                            overflow: 'auto',
+                            maxHeight: '10rem',
+                            scrollBehavior: 'smooth',
+                          },
+                        },
+                      },
+                    }}
                     name="sorting"
-                    title="dmeodme"
                   />
                 </Box>
               </InputStack>
@@ -264,7 +290,17 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
                     name={'inSummary'}
                     control={control}
                     render={({ field: { onChange, value } }) => {
-                      return <Checkbox checked={value} onChange={onChange} />;
+                      return (
+                        <Checkbox
+                          sx={{
+                            '&.MuiButtonBase-root': {
+                              p: 0,
+                            },
+                          }}
+                          checked={value}
+                          onChange={onChange}
+                        />
+                      );
                     }}
                   />
                 </Box>
@@ -276,7 +312,17 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
                     name={'openCases'}
                     control={control}
                     render={({ field: { onChange, value } }) => {
-                      return <Checkbox checked={value} onChange={onChange} />;
+                      return (
+                        <Checkbox
+                          sx={{
+                            '&.MuiButtonBase-root': {
+                              p: 0,
+                            },
+                          }}
+                          checked={value}
+                          onChange={onChange}
+                        />
+                      );
                     }}
                   />
                 </Box>
