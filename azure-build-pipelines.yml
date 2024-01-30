@@ -1,14 +1,14 @@
 variables:
   - ${{ if eq( variables['Build.SourceBranchName'], 'main') }}:
-      - group: DashboardProdApp
+      - group: KK2ProdApp
       - name: buildVersion
         value: 'production'
   - ${{ elseif eq( variables['Build.SourceBranchName'], 'staging')}}:
-      - group: DashboardStagingApp
+      - group: KK2StagingApp
       - name: buildVersion
         value: 'staging'
   - ${{ else }}:
-      - group: DashboardDevApp
+      - group: KK2DevApp
       - name: buildVersion
         value: 'develop'
 
