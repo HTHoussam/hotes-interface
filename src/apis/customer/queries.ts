@@ -10,7 +10,10 @@ interface Customer {
   role: string;
 }
 const getCustomers = async () => {
-  return await axiosInstance.get<Customer[]>('/customers').then((res) => res.data);
+  return await axiosInstance.get<Customer[]>('/customers').then((res) => {
+    console.log('res.data', res.data);
+    return res.data;
+  });
 };
 export const useGetCustomers = () => {
   return useQuery({

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Sales",
+    "id": "cd3e"
+  },
+  {
+    "name": "Marketing",
+    "id": "440b"
+  },
+  {
+    "name": "IT",
+    "id": "d197"
+  },
+  {
+    "name": "HR",
+    "id": "3c1c"
+  },
+  {
+    "name": "Logistics",
+    "id": "fd8f"
+  },
+  {
+    "name": "IT2",
+    "id": "42e6"
+  },
+  {
+    "name": "HR2",
+    "id": "550e"
+  },
+  {
+    "name": "Marketing2",
+    "id": "9bdf"
+  },
+  {
+    "name": "Logistics2",
+    "id": "c549"
+  },
+  {
+    "name": "Sale2s",
+    "id": "f868"
+  }
+]

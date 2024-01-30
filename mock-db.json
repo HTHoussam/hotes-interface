@@ -165,7 +165,6 @@
       "terminatedUntil": "2022-12-31",
       "inSummary": true,
       "terminatedFrom": "2022-01-01",
-
       "sorting": "asc",
       "id": "6941"
     },
@@ -298,6 +297,19 @@
       "caseManager": "",
       "amountTo": "dede",
       "amountFrom": "de"
+    },
+    {
+      "id": "f63c",
+      "openCases": false,
+      "amountFrom": "65",
+      "amountTo": "251321",
+      "caseManager": "",
+      "debtorNo": "",
+      "department": "Sales",
+      "terminatedUntil": "2024-01-30T08:59:13.258Z",
+      "inSummary": false,
+      "terminatedFrom": "2024-01-30T08:59:13.258Z",
+      "sorting": "third"
     }
   ],
   "departments": [

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "admin",
+    "url": "/module1",
+    "icon": "admin",
+    "description": "Proident elit qui tempor amet elit ea.",
+    "id": "bce4"
+  },
+  {
+    "name": "On Boarding",
+    "url": "/module2",
+    "icon": "onBoarding",
+    "description": "Id fugiat eu adipisicing ullamco excepteur consectetur sunt magna.",
+    "id": "73c0"
+  },
+  {
+    "name": "report",
+    "url": "/module3",
+    "icon": "report",
+    "description": "Mollit aliqua amet ullamco adipisicing ullamco ad.",
+    "id": "92ff"
+  },
+  {
+    "name": "Example",
+    "url": "/module4",
+    "icon": "example",
+    "description": "In commodo eu laboris nisi aliquip et eiusmod et mollit eu ad voluptate id.",
+    "id": "8322"
+  },
+  {
+    "name": "example",
+    "url": "/module5",
+    "icon": "example2",
+    "description": "Occaecat deserunt excepteur tempor enim dolor aute sunt.",
+    "id": "6c13"
+  },
+  {
+    "name": "example",
+    "url": "/module6",
+    "icon": "example3",
+    "description": "Ipsum ad dolore est pariatur mollit nisi aliquip.",
+    "id": "d8f7"
+  }
+]

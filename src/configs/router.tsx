@@ -10,6 +10,7 @@ import ImportError from '@/pages/import-error';
 import Loans from '@/pages/loans';
 import Management from '@/pages/management';
 import NewCases from '@/pages/new-cases';
+import Overview from '@/pages/overview';
 import Proceedings from '@/pages/proceedings';
 import Proposals from '@/pages/proposals';
 import PublicAdministration from '@/pages/public-administration';
@@ -83,6 +84,10 @@ export default createBrowserRouter([
       {
         path: '/loans',
         element: <Loans />,
+      },
+      {
+        path: '/overview/:element',
+        element: <Overview />,
       },
     ],
   },
