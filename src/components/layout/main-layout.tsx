@@ -17,7 +17,7 @@ export const MainLayout = () => {
               position: 'relative',
               gridColumn: '1 / span 1',
               gridRow: '2 / span 1',
-              overflow: 'hidden',
+              overflow: 'auto',
               scrollbarGutter: 'stable',
               padding: '1rem',
             }}

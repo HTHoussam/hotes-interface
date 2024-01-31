@@ -9,6 +9,8 @@
   "common.title.language": "Language",
   "common.title.email": "Email",
   "common.title.customer": "Customer",
+  "common.title.search": "Search",
+
   "common.feedback.no.image.selected": "No image selected",
   "common.feedback.image.uploaded": "Image uploaded successfully",
   "common.feedback.validation.error": "Validation error",
@@ -34,6 +36,9 @@
   "home.report.modal.form.label.summert": "Summert",
   "home.report.modal.form.label.apneSake": "Apne sake i nye vinduer",
   "home.report.modal.form.saks.report.description": "Her kan du søke på beløpsgrenser og/eller spesifikke avdelinger (oppdragsgivere).Noen av disse rapportene kan inneholde mye data og kan ta litt tid å få generert og lastet inn i din nettleser.Disse rapportene er et snap-shot av hvilke saker som ligger i KK2, så disse rapportene kan derfor endre seg fra dag til dag.",
+  "home.report.modal.form.innbetaligs.label.periodeTil": "Periode til",
   "home.report.modal.form.submit.button.title": "LAG RAPPORT",
-  "home.report.modal.form.discard.button.title": "Cancel"
+  "home.report.modal.form.discard.button.title": "Cancel",
+  "home.data.common.generic.table.filter.title": "Filter",
+  "home.data.common.generic.table.selectAll.title": "Select All"
 }

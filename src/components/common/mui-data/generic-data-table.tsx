@@ -1,4 +1,3 @@
-import { faker } from '@faker-js/faker';
 import {
   Box,
   Checkbox,
@@ -10,8 +9,9 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { DataGrid, GridColDef, GridColumnMenuItemProps, useGridApiRef } from '@mui/x-data-grid';
+import { DataGrid, DataGridProps, GridColDef, GridColumnMenuItemProps, useGridApiRef } from '@mui/x-data-grid';
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
+import { t } from 'i18next';
 import {
   ChangeEvent,
   Dispatch,
@@ -24,20 +24,14 @@ import {
   useState,
 } from 'react';
 import { Filter } from 'react-bootstrap-icons';
+import { useTranslation } from 'react-i18next';
 
-export default function GenericDataTable() {
-  const data = useMemo(() => {
-    return Array.from({ length: 1000 }, (_, index) => ({
-      id: index + 1,
-      name: faker.word.words(),
-    }));
-  }, []);
-  const columns = useMemo<GridColDef<{ id: number; name: string }>[]>(() => {
-    return [
-      { headerName: 'Id', field: 'id', resizable: false },
-      { headerName: 'name', field: 'name', resizable: true, minWidth: 140 },
-    ];
-  }, []);
+interface GenericDataTableProps {
+  height?: number | string;
+  dataGridProps: DataGridProps;
+}
+
+export default function GenericDataTable({ height, dataGridProps }: Readonly<GenericDataTableProps>) {
   const apiRef = useGridApiRef();
   const [defaultCheckedValues, setDefaultCheckedValues] = useState<string[]>([]);
   const [searchFilter, setSearchFilter] = useState<string[]>([]);
@@ -45,8 +39,18 @@ export default function GenericDataTable() {
     if (apiRef.current) apiRef.current.setQuickFilterValues(searchFilter);
   }, []);
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <Box
+      style={{
+        width: '100%',
+        ...(height
+          ? {
+              height,
+            }
+          : {}),
+      }}
+    >
       <DataGrid
+        {...dataGridProps}
         apiRef={apiRef}
         slots={{
           columnMenu: (props) => (
@@ -67,12 +71,32 @@ export default function GenericDataTable() {
             placement: 'top',
           },
         }}
-        hideFooterPagination={true}
-        rows={data}
-        columns={columns}
-        density="compact"
+        sx={{
+          backgroundColor: 'rgba(243, 244, 247, 1);',
+          fontSize: '12px',
+          fontWeight: 400,
+          '& .MuiTablePagination-selectLabel': {
+            margin: 0,
+          },
+          '& .MuiTablePagination-displayedRows': {
+            margin: 0,
+          },
+          '& .MuiDataGrid-virtualScroller': {
+            scrollbarGutter: 'stable',
+          },
+          '& .MuiDataGrid-virtualScroller::-webkit-scrollbar': {
+            backgroundColor: 'transparent !important',
+          },
+          '& .MuiDataGrid-cell': {
+            backgroundColor: 'white',
+            borderRight: '1px solid rgba(243, 244, 247, 1)',
+          },
+          '& .MuiPaper-root': {
+            maxWidth: '2rem',
+          },
+        }}
       />
-    </div>
+    </Box>
   );
 }
 
@@ -84,59 +108,35 @@ const CustomColumnMenu: React.FC<
     setSearchFilter: Dispatch<SetStateAction<string[]>>;
   }
 > = ({ apiRef, ...restProps }) => {
+  const { t } = useTranslation();
+
   const allValues = useMemo(() => {
     const valuesOfEachRow: string[] = [];
     apiRef.current.getRowModels().forEach((r) => {
+      if (restProps.colDef.type === 'boolean') {
+        valuesOfEachRow.push(apiRef.current.getRowValue(r, restProps.colDef) === 1 ? String(true) : String(false));
+        return;
+      }
       valuesOfEachRow.push(String(apiRef.current.getRowValue(r, restProps.colDef)));
     });
     return valuesOfEachRow;
   }, [apiRef, restProps.colDef]);
+
   const handleChangeInput = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      console.log('event.target.value', event.target.value);
       apiRef.current.setQuickFilterValues([event.target.value]);
     },
     [apiRef],
   );
-  const handleSort = useCallback(
-    (val: 'asc' | 'desc') => {
-      if (apiRef.current) {
-        apiRef.current.sortColumn(restProps.colDef, val);
-      }
-    },
-    [apiRef, restProps.colDef],
-  );
+
   return (
     <Box gap={1} p={2}>
-      {/* <Stack direction={'column'} gap={1}>
-        <IconButton
-          sx={{ maxHeight: '1rem' }}
-          onClick={() => {
-            handleSort('asc');
-          }}
-        >
-          <>
-            <Typography>ASC</Typography>
-            <ArrowUpShort size={15} />
-          </>
-        </IconButton>
-        <IconButton
-          sx={{ maxHeight: '1rem' }}
-          onClick={() => {
-            handleSort('desc');
-          }}
-        >
-          <>
-            <Typography>DESC</Typography>
-            <ArrowDownShort size={15} />
-          </>
-        </IconButton>
-      </Stack> */}
-      <Typography>filter</Typography>
+      <Typography>{t('home.data.common.generic.table.filter.title')}</Typography>
       <Stack gap={2} direction={'column'}>
         <TextField
           size="small"
           onChange={handleChangeInput}
+          placeholder={t('common.title.search')}
           value={apiRef.current.state.filter.filterModel.quickFilterValues}
           variant="outlined"
           sx={{ maxHeight: '1.5rem' }}
@@ -169,7 +169,7 @@ const FilterSelect = memo(
           setCheckedValues(allChecked ? [] : values);
           apiRef.current.setFilterModel(
             {
-              items: [{ operator: 'isAnyOf', field: colDef.field, value: value }],
+              items: [{ operator: 'isAnyOf', field: colDef.field, value: allChecked ? [] : values }],
             },
             'upsertFilterItems',
           );
@@ -192,9 +192,10 @@ const FilterSelect = memo(
         size="small"
         maxRows={2}
         sx={{
-          maxWidth: '12rem',
+          maxWidth: '189px',
         }}
         MenuProps={{
+          autoFocus: false,
           sx: {
             maxWidth: 'fit-content',
             '.MuiPaper-root': {
@@ -222,7 +223,7 @@ const FilterSelect = memo(
             }}
             checked={allChecked}
           />
-          <ListItemText primary={'All'} />
+          <ListItemText primary={t('home.data.common.generic.table.selectAll.title')} />
         </MenuItem>
 
         {values.map((val) => (

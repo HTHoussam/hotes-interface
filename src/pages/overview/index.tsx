@@ -1,7 +1,11 @@
 import { useGetOverviewById } from '@/apis/overview/queries';
 import { GenericCard, GenericDataTable } from '@/components/common/mui-data';
-import { Box, Stack } from '@mui/material';
+import { faker } from '@faker-js/faker';
+import { Box, IconButton, Stack, Typography, styled } from '@mui/material';
+import { GridColDef } from '@mui/x-data-grid';
+import dayjs from 'dayjs';
 import { useMemo } from 'react';
+import { BoxArrowUpRight } from 'react-bootstrap-icons';
 import { useParams } from 'react-router-dom';
 
 export default () => {
@@ -38,9 +42,136 @@ export default () => {
       },
     ];
   }, []);
+  const data = useMemo(() => {
+    return Array.from({ length: 100 }, (_, index) => ({
+      id: index + 1,
+      name: faker.word.words(),
+      case: faker.number.int({
+        min: 1000,
+        max: 9999,
+      }),
+      status: faker.number.int({
+        min: 0,
+        max: 1,
+      }),
+      lastAction: faker.word.sample({
+        length: 4,
+      }),
+      dateForAction: dayjs(new Date(faker.date.anytime())).format('DD.MM.YYYY'),
+      principalAmount: faker.number.int({
+        min: 200,
+        max: 23000000,
+      }),
+      cost: faker.number.int({
+        max: 100000,
+      }),
+      fee: faker.number.int({
+        max: 99,
+      }),
+      interest: faker.number.int({
+        max: 2000,
+      }),
+      paid: faker.number.int({
+        max: 1000,
+      }),
+      balance: faker.number.int(),
+      caseManager: faker.person.fullName(),
+    }));
+  }, []);
+  const columns = useMemo<GridColDef<(typeof data)[0]>[]>(() => {
+    return [
+      {
+        headerName: 'case',
+        field: 'case',
+        flex: 1,
+        renderCell({ value }) {
+          return (
+            <Stack direction={'row'} gap={2} alignItems={'baseline'}>
+              <IconButton
+                sx={{
+                  fontWeight: '800',
+                }}
+              >
+                <BoxArrowUpRight size={18} />
+              </IconButton>
+              <Typography fontSize={'15px'} fontWeight={'500'} color={'rgba(13, 110, 253, 1)'}>
+                {value}
+              </Typography>
+            </Stack>
+          );
+        },
+      },
+      {
+        headerName: 'status',
+        field: 'status',
+        flex: 1,
+        renderCell({ value }) {
+          return (
+            <Stack direction={'row'} gap={1} alignItems={'baseline'}>
+              <EllipseShape
+                height={'9px'}
+                width={'9px'}
+                sx={{
+                  backgroundColor: value === 1 ? 'green' : 'red',
+                }}
+              />
+              <Typography>{value === 1 ? 'Active' : 'Inactive'}</Typography>
+            </Stack>
+          );
+        },
+        type: 'boolean',
+      },
+      {
+        headerName: 'last Action',
+        field: 'lastAction',
+        flex: 1,
+      },
+      {
+        headerName: 'date For Action',
+        field: 'dateForAction',
+        flex: 1,
+      },
+      {
+        headerName: 'principal Amount',
+        field: 'principalAmount',
+        flex: 1,
+      },
+      {
+        headerName: 'cost',
+        field: 'cost',
+        flex: 1,
+      },
+      {
+        headerName: 'fee',
+        field: 'fee',
+        flex: 1,
+      },
+      {
+        headerName: 'interest',
+        field: 'interest',
+        flex: 1,
+      },
+      {
+        headerName: 'paid',
+        field: 'paid',
+        flex: 1,
+      },
+      {
+        headerName: 'balance',
+        field: 'balance',
+        flex: 1,
+      },
+
+      {
+        headerName: 'case Manager',
+        field: 'caseManager',
+        flex: 1,
+      },
+    ];
+  }, []);
   return (
     <Box>
-      <Stack p={4} gap={3} direction={'row'}>
+      <Stack p={2} gap={3} direction={'row'}>
         {sectorsDetails.map(({ title, value }) => (
           <GenericCard
             cardProps={{
@@ -54,9 +185,19 @@ export default () => {
           />
         ))}
       </Stack>
-      <Box p={4}>
-        <GenericDataTable />
+      <Box p={2}>
+        <GenericDataTable
+          dataGridProps={{
+            density: 'compact',
+            rows: data,
+            columns: columns,
+          }}
+          height={600}
+        />
       </Box>
     </Box>
   );
 };
+const EllipseShape = styled(Box)(() => ({
+  borderRadius: '50%',
+}));
