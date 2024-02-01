@@ -89,8 +89,29 @@ const SideMenu = () => {
                 marginInline: 'auto',
               }}
             >
-              <Link to={'/'}>
-                <img alt="kk2-logo" src={isCollapsed || isMobile ? '/imgs/kk_Logo.png' : imgLink} />
+              <Link
+                to={'/'}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <img alt="kk2-logo" src={'/imgs/kk2_Logo.png'} />
+                {!isCollapsed && !isMobile && (
+                  <img
+                    alt="kk2-logo"
+                    src={'/imgs/kk2_logo_text.png'}
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      opacity: isCollapsed || isMobile ? 0 : 1,
+                      transform: `scale(${isCollapsed || isMobile ? 0 : 1})`,
+                      transition: 'opacity 0.75s ease-out, transform 0.75s ease-out',
+                    }}
+                  />
+                )}
               </Link>
             </Box>
           </Stack>
@@ -138,8 +159,8 @@ const SideMenu = () => {
               horizontal: 'left',
             }}
             transformOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
+              vertical: 'top',
+              horizontal: 'center',
             }}
             onClose={handlePopoverClose}
             disableRestoreFocus
@@ -153,7 +174,7 @@ const SideMenu = () => {
 };
 export default SideMenu;
 const StyledMenu = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main, // rgb(41, 77, 138)
+  backgroundColor: theme.palette.primary.main,
   height: '100vh',
   width: '100%',
 }));
@@ -164,6 +185,7 @@ const ContactBox = styled(Box)(({ theme }) => ({
   fontSize: '13px',
   textWrap: 'nowrap',
   minHeight: '8rem',
+  textAlign: 'center',
 }));
 
 interface CollapseButtonProps {

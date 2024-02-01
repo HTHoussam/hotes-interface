@@ -80,8 +80,6 @@ export default () => {
             gap: 2,
             flexDirection: 'row',
             flexWrap: 'wrap',
-            // overflow: 'auto',
-            // scrollbarGutter: 'stable',
           }}
         >
           <MainCard
@@ -103,7 +101,10 @@ export default () => {
             }}
           >
             <Box>
-              <StackedDataRows
+              <StackedDataRows<{
+                value: number;
+                title: string;
+              }>
                 data={[
                   { value: 0, title: 'Saker til vurdering' },
                   { value: 0, title: 'Saker vurdert restpurring' },

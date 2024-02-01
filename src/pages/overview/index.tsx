@@ -1,18 +1,19 @@
 import { useGetOverviewById } from '@/apis/overview/queries';
+import { InvertColorCard, SelectorChip } from '@/components/common';
 import { GenericCard, GenericDataTable } from '@/components/common/mui-data';
+import { formatNumber } from '@/libs/helpers';
 import { faker } from '@faker-js/faker';
 import { Box, IconButton, Stack, Typography, styled } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
-import { BoxArrowUpRight } from 'react-bootstrap-icons';
+import { BoxArrowUpRight, Folder2Open } from 'react-bootstrap-icons';
 import { useParams } from 'react-router-dom';
+import FolderSelect from './components/folder-select';
 
 export default () => {
   const { element } = useParams();
-  console.log('element', element);
   const { data: fetchedData } = useGetOverviewById(String(element));
-  console.log('fetchedData', fetchedData);
   const sectorsDetails = useMemo(() => {
     return [
       {
@@ -112,14 +113,16 @@ export default () => {
                 height={'9px'}
                 width={'9px'}
                 sx={{
-                  backgroundColor: value === 1 ? 'green' : 'red',
+                  backgroundColor: value === 'active' ? 'green' : 'red',
                 }}
               />
-              <Typography>{value === 1 ? 'Active' : 'Inactive'}</Typography>
+              <Typography>{value}</Typography>
             </Stack>
           );
         },
-        type: 'boolean',
+        valueGetter: ({ value }) => {
+          return value === 1 ? 'active' : 'inactive';
+        },
       },
       {
         headerName: 'last Action',
@@ -135,33 +138,50 @@ export default () => {
         headerName: 'principal Amount',
         field: 'principalAmount',
         flex: 1,
+        valueGetter({ value }) {
+          return formatNumber(value);
+        },
       },
       {
         headerName: 'cost',
         field: 'cost',
         flex: 1,
+        valueGetter({ value }) {
+          return formatNumber(value);
+        },
       },
       {
         headerName: 'fee',
         field: 'fee',
         flex: 1,
+        valueGetter({ value }) {
+          return formatNumber(value);
+        },
       },
       {
         headerName: 'interest',
         field: 'interest',
         flex: 1,
+        valueGetter({ value }) {
+          return formatNumber(value);
+        },
       },
       {
         headerName: 'paid',
         field: 'paid',
         flex: 1,
+        valueGetter({ value }) {
+          return formatNumber(value);
+        },
       },
       {
         headerName: 'balance',
         field: 'balance',
         flex: 1,
+        valueGetter({ value }) {
+          return formatNumber(value);
+        },
       },
-
       {
         headerName: 'case Manager',
         field: 'caseManager',
@@ -172,6 +192,27 @@ export default () => {
   return (
     <Box>
       <Stack p={2} gap={3} direction={'row'}>
+        <InvertColorCard invertedcolor={false}>
+          <Box fontWeight={'400'}>
+            <Stack direction={'row'} gap={4}>
+              <Stack direction={'row'} alignItems={'center'} flex={0.75}>
+                <CicleIcon>
+                  <Folder2Open size={34} color="white" />
+                </CicleIcon>
+              </Stack>
+              <Stack
+                sx={{
+                  flexDirection: 'column',
+                  gap: 2,
+                }}
+                flex={2}
+              >
+                <FolderSelect />
+                <SelectorChip />
+              </Stack>
+            </Stack>
+          </Box>
+        </InvertColorCard>
         {sectorsDetails.map(({ title, value }) => (
           <GenericCard
             cardProps={{
@@ -191,6 +232,7 @@ export default () => {
             density: 'compact',
             rows: data,
             columns: columns,
+            rowHeight: 45,
           }}
           height={600}
         />
@@ -200,4 +242,15 @@ export default () => {
 };
 const EllipseShape = styled(Box)(() => ({
   borderRadius: '50%',
+}));
+
+const CicleIcon = styled(Box)(() => ({
+  backgroundColor: '#011043',
+  height: '54px',
+  width: '54px',
+  borderRadius: '50%',
+  textAlign: 'center',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }));

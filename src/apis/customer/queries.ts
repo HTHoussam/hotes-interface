@@ -11,7 +11,6 @@ interface Customer {
 }
 const getCustomers = async () => {
   return await axiosInstance.get<Customer[]>('/customers').then((res) => {
-    console.log('res.data', res.data);
     return res.data;
   });
 };

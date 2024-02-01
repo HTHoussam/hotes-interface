@@ -1,13 +1,12 @@
-import { Overview } from '@/apis/dashboard/queries';
 import { isEven } from '@/libs/helpers';
 import { Stack, StackProps, Typography, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-interface StackedDataProps {
-  data: Overview[];
+interface StackedDataProps<T> {
+  data: T[];
   contentStackProps?: StackProps;
 }
-const StackedDataRows = ({ data, contentStackProps }: StackedDataProps) => {
+const StackedDataRows = <T,>({ data, contentStackProps }: StackedDataProps<T>) => {
   const navigate = useNavigate();
   return (
     <Stack mt={2}>
@@ -19,6 +18,7 @@ const StackedDataRows = ({ data, contentStackProps }: StackedDataProps) => {
           }}
           sx={{
             backgroundColor: (theme) => (!isEven(idx) ? 'white' : `${theme.palette.divider}`),
+
             ...contentStackProps?.sx,
           }}
         >

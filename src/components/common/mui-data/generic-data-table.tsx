@@ -1,14 +1,4 @@
-import {
-  Box,
-  Checkbox,
-  ListItemText,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  Stack,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, Checkbox, ListItemText, MenuItem, Select, Stack, TextField, Typography } from '@mui/material';
 import { DataGrid, DataGridProps, GridColDef, GridColumnMenuItemProps, useGridApiRef } from '@mui/x-data-grid';
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { t } from 'i18next';
@@ -33,11 +23,12 @@ interface GenericDataTableProps {
 
 export default function GenericDataTable({ height, dataGridProps }: Readonly<GenericDataTableProps>) {
   const apiRef = useGridApiRef();
-  const [defaultCheckedValues, setDefaultCheckedValues] = useState<string[]>([]);
   const [searchFilter, setSearchFilter] = useState<string[]>([]);
+
   useEffect(() => {
     if (apiRef.current) apiRef.current.setQuickFilterValues(searchFilter);
   }, []);
+
   return (
     <Box
       style={{
@@ -55,8 +46,6 @@ export default function GenericDataTable({ height, dataGridProps }: Readonly<Gen
         slots={{
           columnMenu: (props) => (
             <CustomColumnMenu
-              defaultCheckedValues={defaultCheckedValues}
-              setDefaultCheckedValues={setDefaultCheckedValues}
               setSearchFilter={setSearchFilter}
               searchFilter={searchFilter}
               {...props}
@@ -68,7 +57,12 @@ export default function GenericDataTable({ height, dataGridProps }: Readonly<Gen
         }}
         slotProps={{
           basePopper: {
-            placement: 'top',
+            placement: 'bottom-end',
+            sx: {
+              '& .MuiPaper-root ': {
+                border: (theme) => `1px solid ${theme.palette.primary.main} `,
+              },
+            },
           },
         }}
         sx={{
@@ -91,9 +85,6 @@ export default function GenericDataTable({ height, dataGridProps }: Readonly<Gen
             backgroundColor: 'white',
             borderRight: '1px solid rgba(243, 244, 247, 1)',
           },
-          '& .MuiPaper-root': {
-            maxWidth: '2rem',
-          },
         }}
       />
     </Box>
@@ -103,23 +94,17 @@ export default function GenericDataTable({ height, dataGridProps }: Readonly<Gen
 const CustomColumnMenu: React.FC<
   GridColumnMenuItemProps & {
     apiRef: MutableRefObject<GridApiCommunity>;
-    defaultCheckedValues: string[];
-    setDefaultCheckedValues: Dispatch<SetStateAction<string[]>>;
     setSearchFilter: Dispatch<SetStateAction<string[]>>;
   }
 > = ({ apiRef, ...restProps }) => {
   const { t } = useTranslation();
-
   const allValues = useMemo(() => {
-    const valuesOfEachRow: string[] = [];
+    const uniqueValues = new Set<string>();
     apiRef.current.getRowModels().forEach((r) => {
-      if (restProps.colDef.type === 'boolean') {
-        valuesOfEachRow.push(apiRef.current.getRowValue(r, restProps.colDef) === 1 ? String(true) : String(false));
-        return;
-      }
-      valuesOfEachRow.push(String(apiRef.current.getRowValue(r, restProps.colDef)));
+      uniqueValues.add(String(apiRef.current.getRowValue(r, restProps.colDef)));
     });
-    return valuesOfEachRow;
+
+    return Array.from(uniqueValues);
   }, [apiRef, restProps.colDef]);
 
   const handleChangeInput = useCallback(
@@ -128,9 +113,8 @@ const CustomColumnMenu: React.FC<
     },
     [apiRef],
   );
-
   return (
-    <Box gap={1} p={2}>
+    <Box gap={1} p={'8px'} height={'auto'}>
       <Typography>{t('home.data.common.generic.table.filter.title')}</Typography>
       <Stack gap={2} direction={'column'}>
         <TextField
@@ -140,8 +124,13 @@ const CustomColumnMenu: React.FC<
           value={apiRef.current.state.filter.filterModel.quickFilterValues}
           variant="outlined"
           sx={{ maxHeight: '1.5rem' }}
+          inputProps={{
+            style: {
+              padding: 4,
+            },
+          }}
         />
-        <FilterSelect colDef={restProps.colDef} apiRef={apiRef} values={allValues} />
+        <FilterSelect key={restProps.colDef.field} colDef={restProps.colDef} apiRef={apiRef} values={allValues} />
       </Stack>
     </Box>
   );
@@ -160,32 +149,107 @@ const FilterSelect = memo(
     const [checkedValues, setCheckedValues] = useState<string[]>(
       apiRef.current.state.filter.filterModel.items[0]?.value ?? [],
     );
-    const allChecked = checkedValues.length === values.length;
 
-    const handleSelectChange = useCallback(
-      (event: SelectChangeEvent<typeof checkedValues>) => {
-        const value = event.target.value;
-        if (value.includes('all')) {
-          setCheckedValues(allChecked ? [] : values);
-          apiRef.current.setFilterModel(
-            {
-              items: [{ operator: 'isAnyOf', field: colDef.field, value: allChecked ? [] : values }],
-            },
-            'upsertFilterItems',
-          );
-          return;
-        }
-        setCheckedValues(Array.isArray(value) ? value.filter((val) => val !== 'all') : []);
-        apiRef.current.setFilterModel(
-          {
-            items: [{ operator: 'isAnyOf', field: colDef.field, value: value }],
-          },
-          'upsertFilterItems',
+    // const allChecked = checkedValues.length === values.length;
+
+    // const handleSelectChange = useCallback(
+    //   (event: SelectChangeEvent<typeof checkedValues>) => {
+    //     const value = event.target.value;
+    //     if (value.includes('all')) {
+    //       setCheckedValues(allChecked ? [] : values);
+    //       apiRef.current.setFilterModel(
+    //         {
+    //           items: [{ operator: 'isAnyOf', field: colDef.field, value: allChecked ? [] : values }],
+    //         },
+    //         'upsertFilterItems',
+    //       );
+    //       return;
+    //     }
+    //     setCheckedValues(Array.isArray(value) ? value.filter((val) => val !== 'all') : []);
+    //     apiRef.current.setFilterModel(
+    //       {
+    //         items: [{ operator: 'isAnyOf', field: colDef.field, value: value }],
+    //       },
+    //       'upsertFilterItems',
+    //     );
+    //   },
+    //   [allChecked, apiRef, colDef.field, values],
+    // );
+    const handleCheckboxChange = useCallback(
+      (value: string) => {
+        const index = checkedValues.indexOf(value);
+        setCheckedValues((prevValues) =>
+          index === -1 ? [...prevValues, value] : prevValues.filter((val) => val !== value),
         );
       },
-      [allChecked, apiRef, colDef.field, values],
+      [checkedValues],
     );
 
+    const allChecked = checkedValues.length === values.length;
+
+    const handleSelectChange = useCallback(() => {
+      if (allChecked) {
+        setCheckedValues([]);
+      } else {
+        setCheckedValues([...values]);
+      }
+    }, [allChecked, values]);
+
+    useEffect(() => {
+      apiRef.current.setFilterModel(
+        {
+          items: [{ operator: 'isAnyOf', field: colDef.field, value: checkedValues }],
+        },
+        'upsertFilterItems',
+      );
+    }, [apiRef, colDef.field, checkedValues]);
+
+    return (
+      <Box
+        sx={{
+          maxHeight: '150px',
+          overflow: 'auto',
+          scrollbarGutter: 'stable',
+        }}
+      >
+        <MenuItem
+          sx={{
+            p: 0,
+          }}
+          value={'all'}
+          key={'all'}
+          onClick={handleSelectChange}
+        >
+          <Checkbox
+            size="small"
+            sx={{
+              p: 0.25,
+            }}
+            checked={allChecked}
+          />
+          <ListItemText primary={t('home.data.common.generic.table.selectAll.title')} />
+        </MenuItem>
+        {values.map((val) => (
+          <MenuItem
+            sx={{
+              p: 0,
+            }}
+            value={val}
+            key={val}
+            onClick={() => handleCheckboxChange(val)}
+          >
+            <Checkbox
+              size="small"
+              sx={{
+                p: 0.25,
+              }}
+              checked={checkedValues.includes(val)}
+            />
+            <ListItemText primary={val} />
+          </MenuItem>
+        ))}
+      </Box>
+    );
     return (
       <Select
         multiple

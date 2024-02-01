@@ -6,5 +6,7 @@ export { default as MainCard } from './main-card';
 export { default as ModalWrapper } from './modal-wrapper';
 export { CustomSearchButton as OutlinedSearchTextField } from './outlined-search';
 export { default as SecondaryDropDown } from './secondary-dropdown';
+export { default as SelectorChip } from './selector-chip';
 export { default as StackedDataRows } from './stacked-data-rows';
 export { InvertColorCard, PageTitle } from './styled-components';
+
