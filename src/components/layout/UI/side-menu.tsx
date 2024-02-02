@@ -7,8 +7,6 @@ import { InfoCircle } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { NavLinks } from '.';
 
-const imgLink = '/imgs/kapitalkontrol-logo.png';
-
 const InfoComponent = () => {
   return (
     <>

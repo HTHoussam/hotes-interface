@@ -1,44 +1,9 @@
 import { faker } from '@faker-js/faker';
-import { Autocomplete, Box, Chip, SelectChangeEvent, TextField, Typography } from '@mui/material';
-import { useState } from 'react';
+import { Autocomplete, Box, Chip, TextField, Typography } from '@mui/material';
 import { X } from 'react-bootstrap-icons';
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
-
 const SelectorChip = () => {
-  const [personName, setPersonName] = useState<string[]>([]);
-
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
-  };
-  const options = Array.from({ length: 4 }, (_, index) => {
+  const options: { title: string; value: string }[] = Array.from({ length: 4 }, () => {
     const r = faker.word.sample();
     return {
       title: r,
@@ -54,7 +19,7 @@ const SelectorChip = () => {
       id="multiple-limit-tags"
       options={options}
       sx={{ width: '300px' }}
-      getOptionLabel={(option) => option.title}
+      getOptionLabel={(option) => (typeof option === 'string' ? option : option.title)}
       renderTags={(selected, getTagProps) => {
         const numTags = selected.length;
         const limitTags = 2;

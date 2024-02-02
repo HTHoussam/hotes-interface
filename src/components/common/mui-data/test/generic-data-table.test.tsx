@@ -4,6 +4,13 @@ import { GenericDataTable } from '..';
 
 describe('test <GenericDataTable/>', () => {
   it('should render correctly', () => {
-    render(<GenericDataTable />);
+    render(
+      <GenericDataTable
+        dataGridProps={{
+          rows: [],
+          columns: [],
+        }}
+      />,
+    );
   });
 });

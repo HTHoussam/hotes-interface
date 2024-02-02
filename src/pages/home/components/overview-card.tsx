@@ -1,4 +1,4 @@
-import { Overview, useGetOverview } from '@/apis/dashboard/queries';
+import { useGetOverview } from '@/apis/dashboard/queries';
 import { StackedDataRows } from '@/components/common';
 import { Box } from '@mui/material';
 import { useMemo } from 'react';
@@ -11,7 +11,7 @@ const OverviewCard = () => {
   }, [fetchedOverviews]);
   return (
     <Box>
-      <StackedDataRows<Overview>
+      <StackedDataRows
         data={overviews}
         contentStackProps={{
           sx: {

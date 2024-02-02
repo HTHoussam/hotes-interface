@@ -101,14 +101,11 @@ export default () => {
             }}
           >
             <Box>
-              <StackedDataRows<{
-                value: number;
-                title: string;
-              }>
+              <StackedDataRows
                 data={[
-                  { value: 0, title: 'Saker til vurdering' },
-                  { value: 0, title: 'Saker vurdert restpurring' },
-                  { value: 0, title: 'Tiltak klare til utsending' },
+                  { value: 0, title: 'Saker til vurdering', url: '' },
+                  { value: 0, title: 'Saker vurdert restpurring', url: '' },
+                  { value: 0, title: 'Tiltak klare til utsending', url: '' },
                 ]}
                 contentStackProps={{
                   sx: {

@@ -2,11 +2,11 @@ import { isEven } from '@/libs/helpers';
 import { Stack, StackProps, Typography, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-interface StackedDataProps<T> {
-  data: T[];
+interface StackedDataProps {
+  data: { title: string; value: string | number; url?: string }[];
   contentStackProps?: StackProps;
 }
-const StackedDataRows = <T,>({ data, contentStackProps }: StackedDataProps<T>) => {
+const StackedDataRows = ({ data, contentStackProps }: StackedDataProps) => {
   const navigate = useNavigate();
   return (
     <Stack mt={2}>

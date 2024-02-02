@@ -1,4 +1,3 @@
-import { useGetOverviewById } from '@/apis/overview/queries';
 import { InvertColorCard, SelectorChip } from '@/components/common';
 import { GenericCard, GenericDataTable } from '@/components/common/mui-data';
 import { formatNumber } from '@/libs/helpers';
@@ -8,12 +7,9 @@ import { GridColDef } from '@mui/x-data-grid';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
 import { BoxArrowUpRight, Folder2Open } from 'react-bootstrap-icons';
-import { useParams } from 'react-router-dom';
 import FolderSelect from './components/folder-select';
 
 export default () => {
-  const { element } = useParams();
-  const { data: fetchedData } = useGetOverviewById(String(element));
   const sectorsDetails = useMemo(() => {
     return [
       {
