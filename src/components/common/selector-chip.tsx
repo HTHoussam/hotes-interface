@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { Autocomplete, Box, Chip, TextField, Typography } from '@mui/material';
+import { Autocomplete, Box, Chip, TextField, Typography, styled } from '@mui/material';
 import { X } from 'react-bootstrap-icons';
 
 const SelectorChip = () => {
@@ -27,14 +27,9 @@ const SelectorChip = () => {
         return (
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, alignItems: 'baseline' }}>
             {selected.slice(0, limitTags).map(({ title, value }, index) => (
-              <Chip
+              <StyledChip
                 {...getTagProps({ index })}
-                sx={{
-                  borderRadius: '4px',
-                  padding: '0.75rem 0.25rem',
-                  border: '1px solid gray',
-                  maxWidth: '6rem',
-                }}
+                index={index}
                 deleteIcon={<X color="black" size={20} />}
                 onDelete={() => {
                   console.log('dkekmdek');
@@ -62,3 +57,14 @@ const SelectorChip = () => {
   );
 };
 export default SelectorChip;
+
+const StyledChip = styled(Chip)<{ index: number }>(({ index }) => ({
+  borderRadius: '4px',
+  padding: '0.75rem 0.25rem',
+  border: '1px solid gray',
+  maxWidth: '6rem',
+  backgroundColor: index % 2 ? 'rgba(97, 190, 157, 0.3)' : 'rgba(248, 147, 30, 0.3)',
+  color: index % 2 ? 'rgba(97, 190, 157, 1)' : 'rgba(248, 147, 30, 1)',
+  fontWeight: '400',
+  fontSize: '16px',
+}));
