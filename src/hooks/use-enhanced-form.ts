@@ -14,7 +14,7 @@ export default function useEnhancedForm<T extends object>({ schema, ...formProps
 
   const yupResolver = useYupResolver({ schema: resolvedSchema as yup.ObjectSchema<T> });
 
-  // @ts-expect-error dede
+  // @ts-expect-error deed
   const form = useForm<T>({ mode: 'all', ...formProps, resolver: yupResolver.resolver });
 
   return Object.assign(form, yupResolver);

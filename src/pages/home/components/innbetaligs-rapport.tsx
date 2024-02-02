@@ -1,21 +1,24 @@
 import { ActionsButton, FormInputDropdown } from '@/components/common';
-import useEnhancedForm from '@/hooks/use-enhanced-form';
 import { InnbetaligsSchema } from '@/libs/validationSchemas';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Stack, Typography, styled } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { Controller } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 const InnbetaligsRapport = ({ handleCloseModal }: { handleCloseModal: (val: boolean) => void }) => {
   const { t } = useTranslation();
-  const { control } = useEnhancedForm({
-    schema: InnbetaligsSchema,
+  const {
+    control,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       periodeFrom: new Date(),
       periodeUntil: new Date(),
       avdeling: 'test2',
     },
+    resolver: yupResolver(InnbetaligsSchema),
   });
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
@@ -61,18 +64,25 @@ const InnbetaligsRapport = ({ handleCloseModal }: { handleCloseModal: (val: bool
                 </Typography>
                 <Controller
                   control={control}
-                  name={'periodeFrom'}
+                  name={'periodeUntil'}
                   render={({ field: { onChange, name } }) => {
                     return (
-                      <DatePicker
-                        sx={{
-                          width: '100%',
-                        }}
-                        label={'Periode fra'}
-                        format="DD.MM.YYYY"
-                        name={name}
-                        onChange={onChange}
-                      />
+                      <>
+                        <DatePicker
+                          sx={{
+                            width: '100%',
+                          }}
+                          label={'Periode fra'}
+                          format="DD.MM.YYYY"
+                          name={name}
+                          onChange={onChange}
+                        />
+                        {errors?.periodeUntil?.message && (
+                          <Typography color={'#d32f2f'} p={1}>
+                            {errors?.periodeUntil?.message}
+                          </Typography>
+                        )}
+                      </>
                     );
                   }}
                 />

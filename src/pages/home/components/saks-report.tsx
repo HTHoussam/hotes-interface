@@ -1,15 +1,15 @@
 import { useGetDepartments } from '@/apis/departments/queries';
 import { useCreateSaksReport } from '@/apis/reports/mutation';
 import { ActionsButton, ControlledFormInput, FormInputDropdown } from '@/components/common';
-import useEnhancedForm from '@/hooks/use-enhanced-form';
 import { SaksReportSchema, SaksReportSchemaType } from '@/libs/validationSchemas';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, Checkbox, IconButton, Stack, Typography, styled } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/de';
 import { useCallback, useEffect, useMemo } from 'react';
 import { InfoCircle, XCircleFill } from 'react-bootstrap-icons';
-import { Controller } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 interface SaksReportProps {
@@ -19,8 +19,13 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
   const { t } = useTranslation();
   const { mutate: createSaksReport } = useCreateSaksReport();
   const { data: fetchedDepartments } = useGetDepartments();
-  const { control, setValue, handleSubmit, resetField } = useEnhancedForm({
-    schema: SaksReportSchema,
+  const {
+    control,
+    setValue,
+    handleSubmit,
+    resetField,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       openCases: false,
       amountFrom: '',
@@ -33,6 +38,7 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
       terminatedFrom: new Date(),
       sorting: 'third',
     },
+    resolver: yupResolver(SaksReportSchema),
   });
 
   const onSubmit = useCallback(
@@ -241,15 +247,22 @@ const SaksReport = ({ handleCloseModal }: SaksReportProps) => {
                     name={'terminatedUntil'}
                     render={({ field: { onChange, name } }) => {
                       return (
-                        <DatePicker
-                          sx={{
-                            width: '100%',
-                          }}
-                          label={t('home.report.modal.form.label.avsluttetTil')}
-                          format="DD.MM.YYYY"
-                          name={name}
-                          onChange={onChange}
-                        />
+                        <>
+                          <DatePicker
+                            sx={{
+                              width: '100%',
+                            }}
+                            label={t('home.report.modal.form.label.avsluttetTil')}
+                            format="DD.MM.YYYY"
+                            name={name}
+                            onChange={onChange}
+                          />
+                          {errors?.terminatedUntil?.message && (
+                            <Typography color={'#d32f2f'} p={1}>
+                              {errors?.terminatedUntil?.message}
+                            </Typography>
+                          )}
+                        </>
                       );
                     }}
                   />
