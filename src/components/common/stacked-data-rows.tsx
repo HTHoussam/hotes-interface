@@ -14,7 +14,7 @@ const StackedDataRows = ({ data, contentStackProps }: StackedDataProps) => {
         <ContentStack
           key={idx}
           onClick={() => {
-            if (typeof url === 'string') navigate(`/overview/${url}`);
+            if (typeof url === 'string') navigate(`${url}`);
           }}
           sx={{
             backgroundColor: (theme) => (!isEven(idx) ? 'white' : `${theme.palette.divider}`),

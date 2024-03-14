@@ -19,8 +19,8 @@ export const MainLayout = () => {
               gridRow: '2 / span 1',
               overflow: 'auto',
               scrollbarGutter: 'stable',
-              padding: '1rem',
             }}
+            id="main-layout__paper"
           >
             <Outlet />
           </Paper>

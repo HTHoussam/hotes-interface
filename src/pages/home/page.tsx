@@ -143,4 +143,5 @@ const GridContainer = styled(Box)<{ footerStatus: FooterStatus }>(({ footerStatu
   alignContent: 'space-between',
   position: 'relative',
   gap: footerStatus === 'collapsed' ? '2rem' : '',
+  padding: '1rem',
 }));

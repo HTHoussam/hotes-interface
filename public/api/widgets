@@ -1,0 +1,56 @@
+[
+  {
+    "title": "widget1",
+    "description": "Irure adipisicing officia consectetur mollit ipsum elit velit non irure adipisicing aute commodo amet.",
+    "id": "widget0",
+    "actions": false
+  },
+  {
+    "title": "widget2",
+    "description": "Irure adipisicing officia consectetur mollit ipsum elit velit non irure adipisicing aute commodo amet.",
+    "id": "widget1",
+    "actions": true
+  },
+  {
+    "title": "widget3",
+    "description": "Irure adipisicing officia consectetur mollit ipsum elit velit non irure adipisicing aute commodo amet.",
+    "id": "widget2",
+    "actions": true
+  },
+  {
+    "title": "widget4",
+    "description": "Irure adipisicing officia consectetur mollit ipsum elit velit non irure adipisicing aute commodo amet.",
+    "id": "widget3",
+    "actions": true
+  },
+  {
+    "title": "widget5",
+    "description": "Irure adipisicing officia consectetur mollit ipsum elit velit non irure adipisicing aute commodo amet.",
+    "id": "widget4",
+    "actions": false
+  },
+  {
+    "title": "widget6",
+    "description": "Irure adipisicing officia consectetur mollit ipsum elit velit non irure adipisicing aute commodo amet.",
+    "id": "widget5",
+    "actions": false
+  },
+  {
+    "title": "widget7",
+    "description": "Irure adipisicing officia consectetur mollit ipsum elit velit non irure adipisicing aute commodo amet.",
+    "id": "widget6",
+    "actions": true
+  },
+  {
+    "title": "widget8",
+    "description": "Irure adipisicing officia consectetur mollit ipsum elit velit non irure adipisicing aute commodo amet.",
+    "id": "widget7",
+    "actions": false
+  },
+  {
+    "title": "widget9",
+    "description": "Irure adipisicing officia consectetur mollit ipsum elit velit non irure adipisicing aute commodo amet.",
+    "id": "widget8",
+    "actions": true
+  }
+]

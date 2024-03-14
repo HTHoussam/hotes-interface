@@ -1,8 +1,9 @@
 import { ErrorBoundary } from '@/components/common';
 import { MainLayout } from '@/components/layout';
-import NotFound from '@/pages/404';
 import Administration from '@/pages/administration';
 import Attachments from '@/pages/attachments';
+import Calendar from '@/pages/calendar';
+import CaseDetails from '@/pages/case-details/';
 import Cases from '@/pages/cases';
 import Deptors from '@/pages/deptors';
 import { HomePage } from '@/pages/home';
@@ -86,13 +87,21 @@ export default createBrowserRouter([
         element: <Loans />,
       },
       {
+        path: '/calendar',
+        element: <Calendar />,
+      },
+      {
         path: '/overview/:element',
         element: <Overview />,
+      },
+      {
+        path: '/cases/:caseNumber',
+        element: <CaseDetails />,
       },
     ],
   },
   {
     path: '*',
-    element: <NotFound />,
+    element: <ErrorBoundary />,
   },
 ]);

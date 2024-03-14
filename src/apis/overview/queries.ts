@@ -7,6 +7,7 @@ interface SectorsOverview {
 }
 const OverviewKeys = {
   fetchOverviewById: () => ['fetchOverviewById'],
+  fetchOverviews: () => ['fetchOverviews'],
 };
 const getOverviewById = async () => {
   return await axiosInstance
@@ -24,5 +25,17 @@ export const useGetOverviewById = (id: string) => {
     select(data) {
       return data[id];
     },
+  });
+};
+
+const getOverviews = async () => {
+  return await axiosInstance.get<{ title: string }[]>(`/overviews`).then((res) => {
+    return res.data;
+  });
+};
+export const useGetOverviews = () => {
+  return useQuery({
+    queryKey: OverviewKeys.fetchOverviews(),
+    queryFn: () => getOverviews(),
   });
 };

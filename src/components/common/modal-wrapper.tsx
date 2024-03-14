@@ -7,7 +7,7 @@ interface ModalWrapperProps {
   handleOpenState: (val: boolean) => void;
   modalWidth: string;
   title: string;
-  actionStack: ReactNode;
+  actionStack?: ReactNode;
   paperProps?: PaperProps;
 }
 const ModalWrapper = memo(

@@ -3,79 +3,79 @@
     "title": "1 foreldes",
     "value": 0,
     "id": "b2e3",
-    "url": "foreldes"
+    "url": "/overview/foreldes"
   },
   {
     "title": "2 utleggstrekk",
     "value": 0,
     "id": "e1f3",
-    "url": "utleggstrekk"
+    "url": "/overview/utleggstrekk"
   },
   {
     "title": "3 gjeldsordning",
     "value": 0,
     "id": "6f79",
-    "url": "gjeldsordning"
+    "url": "/overview/gjeldsordning"
   },
   {
     "title": "4 vurderingsmelding",
     "value": 0,
     "id": "de7d",
-    "url": "vurderingsmelding"
+    "url": "/overview/vurderingsmelding"
   },
   {
     "title": "5 overdekning",
     "value": 0,
     "id": "9d47",
-    "url": "overdekning"
+    "url": "/overview/overdekning"
   },
   {
     "title": "6 betallingsavtale",
     "value": 0,
     "id": "a5c6",
-    "url": "betallingsavtale"
+    "url": "/overview/betallingsavtale"
   },
   {
     "title": "7 pa vent",
     "value": 0,
     "id": "1492",
-    "url": "pavent"
+    "url": "/overview/pavent"
   },
   {
     "title": "8 langtidsovervakning",
     "value": 0,
     "id": "d060",
-    "url": "langtidsovervakning"
+    "url": "/overview/langtidsovervakning"
   },
   {
     "title": "9 tvangstiltak",
     "value": 0,
     "id": "b382",
-    "url": "tvangstiltak"
+    "url": "/overview/tvangstiltak"
   },
   {
     "title": "10 Forfallsliste dokumenter",
     "value": 0,
     "id": "7930",
-    "url": "forfallsliste"
+    "url": "/overview/forfallsliste"
   },
   {
     "title": "11 ved advokat",
     "value": null,
     "id": "7071",
-    "url": "vedadvokat"
+    "url": "/calendar"
   },
   {
     "title": "12 vurdert restpurring",
     "value": 0,
     "id": "f256",
-    "url": "vurdert"
+    "url": "/overview/vurdert"
   },
   {
     "title": "13 Demo saksbehandler",
     "value": 0,
     "id": "03a7",
-    "url": "demo"
+    "url": "/overview/demo"
   },
   {
     "title": "14 Today's Messages",

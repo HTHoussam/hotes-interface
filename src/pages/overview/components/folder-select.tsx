@@ -1,12 +1,32 @@
+import { useGetOverviews } from '@/apis/overview/queries';
 import { MenuItem, Select } from '@mui/material';
-import { useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const FolderSelect = () => {
-  const options = ['value1', 'value2', 'value3', 'value4', 'value5'];
-  const [selectedValue, setSelectedValue] = useState(options[0]);
+const FolderSelect = memo(() => {
+  const urlParams = useParams();
+  const navigate = useNavigate();
+  const { data: overviewData } = useGetOverviews();
+
+  const options = useMemo(() => {
+    if (!overviewData) return [];
+    return overviewData.map((r) => r.title);
+  }, [overviewData]);
+  const [selectedValue, setSelectedValue] = useState(urlParams.element);
+
+  useEffect(() => {
+    if (urlParams?.element) {
+      setSelectedValue(urlParams.element);
+    }
+  }, [urlParams.element]);
+
   return (
     <Select
       size="small"
+      sx={{
+        backgroundColor: 'white',
+        textAlign: 'left',
+      }}
       MenuProps={{
         autoFocus: false,
         sx: {
@@ -21,6 +41,7 @@ const FolderSelect = () => {
       value={selectedValue}
       onChange={(event) => {
         setSelectedValue(event.target.value);
+        navigate(`/overview/${event.target.value}`);
       }}
     >
       {options.map((item) => (
@@ -30,5 +51,5 @@ const FolderSelect = () => {
       ))}
     </Select>
   );
-};
+});
 export default FolderSelect;

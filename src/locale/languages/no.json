@@ -10,12 +10,11 @@
   "common.title.email": "Email",
   "common.title.customer": "Customer",
   "common.title.search": "Search",
-
   "common.feedback.no.image.selected": "No image selected",
   "common.feedback.image.uploaded": "Image uploaded successfully",
   "common.feedback.update.failed": "couldn't update",
-  "common.button.submit": "submit",
-  "common.button.discard": "submit",
+  "common.button.submit": "Lagre",
+  "common.button.discard": "Avbryt",
   "settings.feedback.user.updated": "Successfully updated the user",
   "common.feedback.validation.error": "Validation error",
   "common.image.upload": "Click the image to change it",
@@ -39,5 +38,16 @@
   "home.report.modal.form.submit.button.title": "LAG RAPPORT",
   "home.report.modal.form.discard.button.title": "Avbryt",
   "home.data.common.generic.table.filter.title": "Filter",
-  "home.data.common.generic.table.selectAll.title": "Select All"
+  "home.data.common.generic.table.selectAll.title": "Select All",
+  "home.data.common.generic.table.exportTable.title": "Export Table",
+  "calendar.page.header.title": "tiltak",
+  "common.text.see.all": "see all",
+  "common.text.see.details": "Se detaljer",
+  "common.title.save": "Save",
+  "common.title.cancel": "Cancel",
+  "case.detail.first.tab.title": "Opprett",
+  "case.detail.second.tab.title": "Annet",
+  "case.detail.edit.mode.title": "Edit mode",
+  "case.detail.customize.mode.drawer.title": "Edit View Or Add Widgets",
+  "case.detail.customize.mode.drawer.description": "You can withdraw the card and place it in an empty place or click on the Add button."
 }

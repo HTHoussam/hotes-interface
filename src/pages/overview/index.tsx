@@ -1,15 +1,20 @@
-import { InvertColorCard, SelectorChip } from '@/components/common';
+import { EllipseShape } from '@/components/common';
 import { GenericCard, GenericDataTable } from '@/components/common/mui-data';
-import { formatNumber } from '@/libs/helpers';
+import { StatusColorMapper } from '@/libs/constants';
+import { formatNumber, reverseFormatNumber } from '@/libs/helpers';
+import { OverviewDetail } from '@/types';
 import { faker } from '@faker-js/faker';
-import { Box, IconButton, Stack, Typography, styled } from '@mui/material';
-import { GridColDef } from '@mui/x-data-grid';
+import { Box, IconButton, Stack, Typography } from '@mui/material';
+import { GridCellParams, GridColDef } from '@mui/x-data-grid';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
-import { BoxArrowUpRight, Folder2Open } from 'react-bootstrap-icons';
-import FolderSelect from './components/folder-select';
+import { BoxArrowUpRight } from 'react-bootstrap-icons';
+import { useNavigate, useParams } from 'react-router-dom';
+import { FolderCard } from './components';
 
 export default () => {
+  const urlParams = useParams();
+  const navigate = useNavigate();
   const sectorsDetails = useMemo(() => {
     return [
       {
@@ -39,22 +44,25 @@ export default () => {
       },
     ];
   }, []);
-  const data = useMemo(() => {
-    return Array.from({ length: 100 }, (_, index) => ({
+  const data: OverviewDetail[] = useMemo(() => {
+    return Array.from({ length: 80 }, (_, index) => ({
       id: index + 1,
       name: faker.word.words(),
       case: faker.number.int({
         min: 1000,
         max: 9999,
       }),
-      status: faker.number.int({
-        min: 0,
-        max: 1,
-      }),
+      status: faker.helpers.arrayElement(['active', 'inactive', 'pending', 'closed']).toString(),
       lastAction: faker.word.sample({
         length: 4,
       }),
-      dateForAction: dayjs(new Date(faker.date.anytime())).format('DD.MM.YYYY'),
+      dateForAction: dayjs(
+        faker.date.between({
+          from: new Date(2023, 1, 12),
+          to: new Date(2024, 4, 12),
+        }),
+      ),
+
       principalAmount: faker.number.int({
         min: 200,
         max: 23000000,
@@ -63,7 +71,8 @@ export default () => {
         max: 100000,
       }),
       fee: faker.number.int({
-        max: 99,
+        min: 0,
+        max: 20,
       }),
       interest: faker.number.int({
         max: 2000,
@@ -74,7 +83,7 @@ export default () => {
       balance: faker.number.int(),
       caseManager: faker.person.fullName(),
     }));
-  }, []);
+  }, [urlParams.element]);
   const columns = useMemo<GridColDef<(typeof data)[0]>[]>(() => {
     return [
       {
@@ -87,6 +96,9 @@ export default () => {
               <IconButton
                 sx={{
                   fontWeight: '800',
+                }}
+                onClick={() => {
+                  navigate(`/cases/${value}`);
                 }}
               >
                 <BoxArrowUpRight size={18} />
@@ -109,15 +121,12 @@ export default () => {
                 height={'9px'}
                 width={'9px'}
                 sx={{
-                  backgroundColor: value === 'active' ? 'green' : 'red',
+                  backgroundColor: StatusColorMapper[value],
                 }}
               />
               <Typography>{value}</Typography>
             </Stack>
           );
-        },
-        valueGetter: ({ value }) => {
-          return value === 1 ? 'active' : 'inactive';
         },
       },
       {
@@ -129,6 +138,10 @@ export default () => {
         headerName: 'date For Action',
         field: 'dateForAction',
         flex: 1,
+        type: 'date',
+        valueFormatter({ value }) {
+          return dayjs(value).format('DD.MM.YYYY');
+        },
       },
       {
         headerName: 'principal Amount',
@@ -137,6 +150,14 @@ export default () => {
         valueGetter({ value }) {
           return formatNumber(value);
         },
+        type: 'number',
+        getApplyQuickFilterFn(value) {
+          return (params: GridCellParams) => {
+            return String(params.value).includes(formatNumber(Number(reverseFormatNumber(value))));
+          };
+        },
+        headerAlign: 'left',
+        align: 'left',
       },
       {
         headerName: 'cost',
@@ -145,6 +166,14 @@ export default () => {
         valueGetter({ value }) {
           return formatNumber(value);
         },
+        getApplyQuickFilterFn(value) {
+          return (params: GridCellParams) => {
+            return String(params.value).includes(formatNumber(Number(reverseFormatNumber(value))));
+          };
+        },
+        type: 'number',
+        headerAlign: 'left',
+        align: 'left',
       },
       {
         headerName: 'fee',
@@ -152,6 +181,14 @@ export default () => {
         flex: 1,
         valueGetter({ value }) {
           return formatNumber(value);
+        },
+        type: 'number',
+        headerAlign: 'left',
+        align: 'left',
+        getApplyQuickFilterFn(value) {
+          return (params: GridCellParams) => {
+            return String(params.value).includes(formatNumber(Number(reverseFormatNumber(value))));
+          };
         },
       },
       {
@@ -161,6 +198,14 @@ export default () => {
         valueGetter({ value }) {
           return formatNumber(value);
         },
+        type: 'number',
+        headerAlign: 'left',
+        align: 'left',
+        getApplyQuickFilterFn(value) {
+          return (params: GridCellParams) => {
+            return String(params.value).includes(formatNumber(Number(reverseFormatNumber(value))));
+          };
+        },
       },
       {
         headerName: 'paid',
@@ -168,6 +213,14 @@ export default () => {
         flex: 1,
         valueGetter({ value }) {
           return formatNumber(value);
+        },
+        type: 'number',
+        headerAlign: 'left',
+        align: 'left',
+        getApplyQuickFilterFn(value) {
+          return (params: GridCellParams) => {
+            return String(params.value).includes(formatNumber(Number(reverseFormatNumber(value))));
+          };
         },
       },
       {
@@ -177,6 +230,14 @@ export default () => {
         valueGetter({ value }) {
           return formatNumber(value);
         },
+        type: 'number',
+        headerAlign: 'left',
+        align: 'left',
+        getApplyQuickFilterFn(value) {
+          return (params: GridCellParams) => {
+            return String(params.value).includes(formatNumber(Number(reverseFormatNumber(value))));
+          };
+        },
       },
       {
         headerName: 'case Manager',
@@ -185,37 +246,29 @@ export default () => {
       },
     ];
   }, []);
+  const [statuses, statusesCounts] = useMemo(() => {
+    const statusesSet = new Set(data.map((r) => r.status.toString().trim()));
+    const uniqueStatuses = Array.from(statusesSet);
+    const counts: { [key: string]: number } = {};
+    for (const val of uniqueStatuses) {
+      counts[val] = data.filter((r) => r.status === val).length;
+    }
+    return [uniqueStatuses, counts];
+  }, [data]);
+
   return (
     <Box>
-      <Stack p={2} gap={3} direction={'row'}>
-        <InvertColorCard invertedcolor={false}>
-          <Box fontWeight={'400'}>
-            <Stack direction={'row'} gap={4}>
-              <Stack direction={'row'} alignItems={'center'} flex={0.75}>
-                <CicleIcon>
-                  <Folder2Open size={34} color="white" />
-                </CicleIcon>
-              </Stack>
-              <Stack
-                sx={{
-                  flexDirection: 'column',
-                  gap: 2,
-                }}
-                flex={2}
-              >
-                <FolderSelect />
-                <SelectorChip />
-              </Stack>
-            </Stack>
-          </Box>
-        </InvertColorCard>
-        {sectorsDetails.map(({ title, value }) => (
+      <Stack p={2} gap={2} direction={'row'} flexWrap={'wrap'}>
+        <FolderCard statusesCounts={statusesCounts} statuses={statuses} />
+        {sectorsDetails.map(({ title, value }, index) => (
           <GenericCard
             cardProps={{
               sx: {
-                flex: 1,
+                flex: index === sectorsDetails.length - 1 ? 1 : 0.5,
+                minWidth: index === sectorsDetails.length - 1 ? '210px' : '150px',
               },
             }}
+            invertedColor={index === sectorsDetails.length - 1}
             title={title}
             key={title}
             value={value}
@@ -229,6 +282,7 @@ export default () => {
             rows: data,
             columns: columns,
             rowHeight: 45,
+            rowSelection: true,
           }}
           height={600}
         />
@@ -236,17 +290,3 @@ export default () => {
     </Box>
   );
 };
-const EllipseShape = styled(Box)(() => ({
-  borderRadius: '50%',
-}));
-
-const CicleIcon = styled(Box)(() => ({
-  backgroundColor: '#011043',
-  height: '54px',
-  width: '54px',
-  borderRadius: '50%',
-  textAlign: 'center',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));

@@ -25,8 +25,8 @@ export const ControlledFormInput = <T extends Record<string, any>>({
           onChange={onChange}
           value={value}
           fullWidth
-          {...textFieldProps}
           variant="outlined"
+          {...textFieldProps}
         />
       )}
     />

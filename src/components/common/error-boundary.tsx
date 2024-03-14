@@ -1,17 +1,46 @@
-import { Stack } from '@mui/material';
-import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
+import { Box, Button, Stack, Typography, styled } from '@mui/material';
+import { useCallback } from 'react';
+import { Link, isRouteErrorResponse, useRouteError } from 'react-router-dom';
 
 const ErrorBoundary = () => {
   const error = useRouteError();
+  const renderLogo = useCallback(() => {
+    return (
+      <Box sx={{ overflow: 'hidden', width: '270px' }}>
+        <img
+          src={'/imgs/logo.png'}
+          alt="Kapital kontrol"
+          loading="lazy"
+          style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+        />
+      </Box>
+    );
+  }, []);
+  const renderGoBackBtn = useCallback(() => {
+    return (
+      <Link to="/">
+        <Button
+          sx={{
+            width: '10rem',
+          }}
+        >
+          home
+        </Button>
+      </Link>
+    );
+  }, []);
   if (isRouteErrorResponse(error)) {
     return (
-      <Stack
+      <StyledStack
         sx={{
           flexDirection: 'column',
           backgroundColor: '#FF7F7F ',
+          gap: 2,
         }}
         id="error-page-1"
       >
+        {renderLogo()}
+
         <h1>Oops! {error.status}</h1>
         <p>{error.statusText}</p>
         {error.data?.message && (
@@ -19,21 +48,39 @@ const ErrorBoundary = () => {
             <i>{error.data.message}</i>
           </p>
         )}
-      </Stack>
+        {renderGoBackBtn()}
+      </StyledStack>
     );
   } else if (error instanceof Error) {
     return (
-      <Stack id="error-page-2">
-        <h1>Oops! Unexpected Error</h1>
-        <p>Something went wrong.</p>
+      <StyledStack id="error-page-2">
+        {renderLogo()}
+        <Typography variant="body1">Oops! Something went wrong.</Typography>
+        <p></p>
         <p>
           <i>{error.message}</i>
         </p>
-      </Stack>
+        {renderGoBackBtn()}
+      </StyledStack>
     );
   } else {
-    return <></>;
+    return (
+      <StyledStack id="error-page-3">
+        {renderLogo()}
+        <Typography variant="body1">Oops! Something went wrong.</Typography>
+
+        {renderGoBackBtn()}
+      </StyledStack>
+    );
   }
 };
 
 export default ErrorBoundary;
+
+const StyledStack = styled(Stack)(() => ({
+  height: '100vh',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: '1rem',
+}));

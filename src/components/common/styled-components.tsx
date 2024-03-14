@@ -1,4 +1,15 @@
-import { Button, Select, Stack, Tooltip, TooltipProps, Typography, styled, tooltipClasses } from '@mui/material';
+import {
+  Box,
+  Button,
+  IconButton,
+  Select,
+  Stack,
+  Tooltip,
+  TooltipProps,
+  Typography,
+  styled,
+  tooltipClasses,
+} from '@mui/material';
 
 export const PageTitle = styled(Typography)(() => ({
   marginTop: '2rem',
@@ -67,13 +78,55 @@ export const OutlinedSelect = styled(Select)(({ theme }) => ({
 }));
 
 export const InvertColorCard = styled(Stack)<{ invertedcolor?: boolean }>(({ invertedcolor = false }) => ({
-  padding: '1rem 2.5rem 1rem 1rem',
   borderRadius: '4px',
-  textAlign: 'center',
+  textAlign: 'left',
+  padding: '2rem 1rem',
   backgroundColor: invertedcolor ? 'rgba(1, 16, 67, 0.8)' : 'rgba(243, 244, 247, 1)',
   color: !invertedcolor ? 'rgba(1, 16, 67, 0.8)' : 'rgba(243, 244, 247, 1)',
-  minHeight: '9rem',
   minWidth: '7.6rem',
+  alignItems: 'flex-start',
+  justifyContent: 'center',
+}));
+
+export const EllipseShape = styled(Box)(() => ({
+  borderRadius: '50%',
+}));
+export const CircleIcon = styled(Box)<{ color: string }>(({ color }) => ({
+  backgroundColor: color,
+  height: '54px',
+  width: '54px',
+  borderRadius: '50%',
+  textAlign: 'center',
+  display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+}));
+
+export const CustomDrawerContainer = styled(Box)(() => ({
+  position: 'fixed',
+  zIndex: 2,
+  backgroundColor: 'white',
+  top: 93,
+  right: 0,
+  height: '100%',
+  borderRadius: '16px',
+  boxShadow: '-15px 25px 42.5px 0px rgba(0, 0, 0, 0.15)',
+  paddingBottom: '5rem',
+}));
+
+export const SquaredIconButton = styled(IconButton)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  borderRadius: 0,
+  color: 'white',
+  width: '32px',
+}));
+
+export const CaseStyledHeaderStack = styled(Stack)(() => ({
+  justifyContent: 'space-between',
+  flexDirection: 'row',
+  alignItems: 'center',
+  width: '100%',
+  paddingLeft: '0.5rem',
+  paddingRight: '0.5rem',
+  flexWrap: 'wrap',
 }));

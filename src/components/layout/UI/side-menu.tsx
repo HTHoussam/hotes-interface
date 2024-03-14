@@ -50,9 +50,10 @@ const SideMenu = () => {
         onMouseEnter={() => (!isMobile ? setShowCollapseBtn(true) : setIsCollapsed(false))}
         onMouseLeave={() => setShowCollapseBtn(false)}
         sx={{
-          maxWidth: !isCollapsed ? '14rem' : '5rem',
-          transition: 'all 0.5s ease-in-out',
+          maxWidth: !isCollapsed ? '14rem' : '4rem',
+          transition: 'all 0.25s ease-in-out',
         }}
+        id="side-menu__pos"
       >
         {!isMobile && (
           <CollapseButton
@@ -60,7 +61,7 @@ const SideMenu = () => {
               toggleMenuCollapse();
             }}
             collapsedisplay={showCollapseBtn ? 'flex' : 'none'}
-            collapseleft={isCollapsed ? 40 : 217}
+            collapseleft={isCollapsed ? 60 : 220}
           >
             {isCollapsed ? <ArrowForwardIcon /> : <ArrowBackIcon />}
           </CollapseButton>
@@ -96,9 +97,10 @@ const SideMenu = () => {
                   alignItems: 'center',
                 }}
               >
-                <img alt="kk2-logo" src={'/imgs/kk2_Logo.png'} />
+                <img loading="lazy" alt="kk2-logo" src={'/imgs/kk2_Logo.png'} />
                 {!isCollapsed && !isMobile && (
                   <img
+                    loading="lazy"
                     alt="kk2-logo"
                     src={'/imgs/kk2_logo_text.png'}
                     style={{
