@@ -1,9 +1,7 @@
 import { i18n } from '@/locale/i18n';
-import matchers from '@testing-library/jest-dom/matchers';
+import '@testing-library/jest-dom/vitest';
+import { beforeEach } from 'vitest';
 
-import { beforeEach, expect } from 'vitest';
-
-expect.extend(matchers);
 beforeEach(() => {
   i18n.init();
 });
