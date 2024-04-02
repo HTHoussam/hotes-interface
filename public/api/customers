@@ -1,9 +1,0 @@
-[
-  { "name": "customer1", "id": "0011", "role": "admin" },
-  { "name": "customer322", "id": "0012", "role": "user" },
-  {
-    "name": "customer2332",
-    "id": "0013",
-    "role": "audit"
-  }
-]

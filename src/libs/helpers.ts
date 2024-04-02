@@ -90,12 +90,5 @@ export function IsWeekend(date: string | Date) {
       ? new Date(Number(date.split('.')[2]), Number(date.split('.')[1]), Number(date.split('.')[0]))
       : date;
   const dayOfWeek = dateObject.toDateString();
-  console.log('dayOfWeek', dayOfWeek);
-  console.log(
-    "dayOfWeek.includes('Sat') ",
-    dayOfWeek.includes('Sat'),
-    "dayOfWeek.includes('Sun')",
-    dayOfWeek.includes('Sun'),
-  );
   return dayOfWeek.includes('Sat') || dayOfWeek.includes('Sun');
 }

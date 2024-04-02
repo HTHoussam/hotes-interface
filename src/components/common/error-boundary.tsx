@@ -8,7 +8,7 @@ const ErrorBoundary = () => {
     return (
       <Box sx={{ overflow: 'hidden', width: '270px' }}>
         <img
-          src={'/imgs/logo.png'}
+          src={'/imgs/404.jpg'}
           alt="Kapital kontrol"
           loading="lazy"
           style={{ objectFit: 'cover', width: '100%', height: '100%' }}

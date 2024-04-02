@@ -1,9 +1,0 @@
-.upload-container {
-  padding: 3rem;
-  border: 1px dashed rgba(1, 16, 67, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(240, 240, 240, 1);
-  flex: 1;
-}

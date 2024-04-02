@@ -1,46 +1,54 @@
 {
-  "modules": [
+  "hotels": [
     {
-      "name": "admin",
-      "url": "/module1",
-      "icon": "admin",
-      "description": "Proident elit qui tempor amet elit ea.",
-      "id": "bce4"
+      "id": 1,
+      "name": "Sunset Inn",
+      "location": "Beachfront Avenue",
+      "rooms": 50,
+      "description": "A cozy beachfront hotel offering breathtaking sunset views.",
+      "href": "https://www.sunsetinn.com",
+      "availableRooms": 14,
+      "image": "https://plus.unsplash.com/premium_photo-1675745329954-9639d3b74bbf?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
-      "name": "On Boarding",
-      "url": "/module2",
-      "icon": "onBoarding",
-      "description": "Id fugiat eu adipisicing ullamco excepteur consectetur sunt magna.",
-      "id": "73c0"
+      "id": 2,
+      "name": "Mountain View Lodge",
+      "location": "Alpine Way",
+      "rooms": 25,
+      "availableRooms": 5,
+      "description": "Experience the serenity of the mountains at Mountain View Lodge.",
+      "href": "https://www.mountainviewlodge.com",
+      "image": "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1949&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
-      "name": "report",
-      "url": "/module3",
-      "icon": "report",
-      "description": "Mollit aliqua amet ullamco adipisicing ullamco ad.",
-      "id": "92ff"
+      "id": 3,
+      "name": "City Lights Hotel",
+      "location": "Downtown Street",
+      "rooms": 40,
+      "availableRooms": 23,
+      "description": "Immerse yourself in the vibrant energy of the city at City Lights Hotel.",
+      "href": "https://www.citylightshotel.com",
+      "image": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
-      "name": "Example",
-      "url": "/module4",
-      "icon": "example",
-      "description": "In commodo eu laboris nisi aliquip et eiusmod et mollit eu ad voluptate id.",
-      "id": "8322"
+      "id": 4,
+      "name": "Riverside Retreat",
+      "location": "Riverfront Road",
+      "rooms": 30,
+      "availableRooms": 3,
+      "description": "Relax by the riverside and enjoy nature's tranquility at Riverside Retreat.",
+      "href": "https://www.riversideretreat.com",
+      "image": "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
-      "name": "example",
-      "url": "/module5",
-      "icon": "example2",
-      "description": "Occaecat deserunt excepteur tempor enim dolor aute sunt.",
-      "id": "6c13"
-    },
-    {
-      "name": "example",
-      "url": "/module6",
-      "icon": "example3",
-      "description": "Ipsum ad dolore est pariatur mollit nisi aliquip.",
-      "id": "d8f7"
+      "id": 5,
+      "name": "Tranquil Oasis Resort",
+      "location": "Tropical Paradise Lane",
+      "rooms": 60,
+      "availableRooms": 45,
+      "description": "Escape to a peaceful oasis amidst lush tropical surroundings at Tranquil Oasis Resort.",
+      "href": "https://www.tranquiloasisresort.com",
+      "image": "https://images.unsplash.com/photo-1563911302283-d2bc129e7570?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
   ],
   "users": [
@@ -61,338 +69,6 @@
       "name": "Houssam Habbat 112",
       "email": "Houssam11@email.com",
       "customer": "customer77"
-    }
-  ],
-  "stats": {
-    "newCasesToday": 2,
-    "activeCases": 4,
-    "activeCasesBalace": "48093029320",
-    "degreeOfSolution": 0,
-    "lastTransferred": "24-11-2023"
-  },
-  "overview": [
-    {
-      "title": "1 foreldes",
-      "value": 0,
-      "id": "b2e3"
-    },
-    {
-      "title": "2 utleggstrekk",
-      "value": 0,
-      "id": "e1f3"
-    },
-    {
-      "title": "3 gjeldsordning",
-      "value": 0,
-      "id": "6f79"
-    },
-    {
-      "title": "4 vurderingsmelding",
-      "value": 0,
-      "id": "de7d"
-    },
-    {
-      "title": "5 overdekning",
-      "value": 0,
-      "id": "9d47"
-    },
-    {
-      "title": "6 betallingsavtale",
-      "value": 0,
-      "id": "a5c6"
-    },
-    {
-      "title": "7 pa vent",
-      "value": 0,
-      "id": "1492"
-    },
-    {
-      "title": "8 langtidsovervakning",
-      "value": 0,
-      "id": "d060"
-    },
-    {
-      "title": "9 tvangstiltak",
-      "value": 0,
-      "id": "b382"
-    },
-    {
-      "title": "10 Forfallsliste dokumenter",
-      "value": 0,
-      "id": "7930"
-    },
-    {
-      "title": "11 ved advokat",
-      "value": 0,
-      "id": "7071"
-    },
-    {
-      "title": "12 vurdert restpurring",
-      "value": 0,
-      "id": "f256"
-    },
-    {
-      "title": "13 Demo saksbehandler",
-      "value": 0,
-      "id": "03a7"
-    }
-  ],
-  "customers": [
-    {
-      "name": "customer1",
-      "id": "0011",
-      "role": "admin"
-    },
-    {
-      "name": "customer322",
-      "id": "0012",
-      "role": "user"
-    },
-    {
-      "name": "customer2332",
-      "id": "0013",
-      "role": "audit"
-    }
-  ],
-  "saksreport": [
-    {
-      "openCases": true,
-      "amountFrom": "1000",
-      "amountTo": "5000",
-      "caseManager": "John Doe",
-      "debtorNo": "123456",
-      "department": "Finance",
-      "terminatedUntil": "2022-12-31",
-      "inSummary": true,
-      "terminatedFrom": "2022-01-01",
-      "sorting": "asc",
-      "id": "6941"
-    },
-    {
-      "openCases": false,
-      "amountFrom": "500",
-      "amountTo": "2000",
-      "caseManager": "Jane Smith",
-      "debtorNo": "789012",
-      "department": "Legal",
-      "terminatedUntil": "2022-11-30",
-      "inSummary": true,
-      "terminatedFrom": "2022-02-15",
-      "sorting": "desc",
-      "id": "a9ec"
-    },
-    {
-      "id": "a74b",
-      "openCases": false,
-      "inSummary": false,
-      "sorting": "",
-      "terminatedUntil": "",
-      "terminatedFrom": "Mon, 01 Jan 2024 23:00:00 GMT",
-      "debtorNo": "",
-      "department": "",
-      "caseManager": "",
-      "amountTo": "5454",
-      "amountFrom": "54"
-    },
-    {
-      "id": "ed27",
-      "openCases": false,
-      "inSummary": false,
-      "sorting": "",
-      "terminatedUntil": "",
-      "terminatedFrom": "Mon, 01 Jan 2024 23:00:00 GMT",
-      "debtorNo": "e3",
-      "department": "e3",
-      "caseManager": "",
-      "amountTo": "5454",
-      "amountFrom": "54"
-    },
-    {
-      "id": "210f",
-      "openCases": false,
-      "inSummary": true,
-      "sorting": "third",
-      "terminatedUntil": "Thu, 04 Jan 2024 23:00:00 GMT",
-      "terminatedFrom": "Mon, 01 Jan 2024 23:00:00 GMT",
-      "debtorNo": "dede",
-      "department": "dede",
-      "caseManager": "",
-      "amountTo": "dedede",
-      "amountFrom": "deded"
-    },
-    {
-      "id": "83a9",
-      "openCases": false,
-      "inSummary": true,
-      "sorting": "third",
-      "terminatedUntil": "Thu, 04 Jan 2024 23:00:00 GMT",
-      "terminatedFrom": "Mon, 01 Jan 2024 23:00:00 GMT",
-      "debtorNo": "dede",
-      "department": "dede",
-      "caseManager": "",
-      "amountTo": "dedede",
-      "amountFrom": "3d"
-    },
-    {
-      "id": "a504",
-      "openCases": false,
-      "amountFrom": "ede",
-      "amountTo": "dede",
-      "caseManager": "",
-      "debtorNo": "",
-      "department": "",
-      "terminatedUntil": "",
-      "inSummary": false,
-      "terminatedFrom": "",
-      "sorting": ""
-    },
-    {
-      "id": "7d4c",
-      "openCases": true,
-      "inSummary": false,
-      "sorting": "third",
-      "terminatedUntil": "Tue, 02 Jan 2024 23:00:00 GMT",
-      "terminatedFrom": "Tue, 02 Jan 2024 23:00:00 GMT",
-      "debtorNo": "cdcdc",
-      "department": "cdcd",
-      "caseManager": "",
-      "amountTo": "cdcd",
-      "amountFrom": "cdcd"
-    },
-    {
-      "id": "b697",
-      "openCases": false,
-      "inSummary": false,
-      "sorting": "",
-      "terminatedUntil": "",
-      "terminatedFrom": "Tue, 09 Jan 2024 23:00:00 GMT",
-      "debtorNo": "",
-      "department": "",
-      "caseManager": "",
-      "amountTo": "frfrf",
-      "amountFrom": "ffrfr"
-    },
-    {
-      "id": "27e4",
-      "openCases": false,
-      "amountFrom": "dede22",
-      "amountTo": "ee",
-      "caseManager": "",
-      "debtorNo": "32",
-      "department": "32",
-      "terminatedUntil": "",
-      "inSummary": true,
-      "terminatedFrom": "",
-      "sorting": "second"
-    },
-    {
-      "id": "a558",
-      "openCases": false,
-      "inSummary": false,
-      "sorting": "",
-      "terminatedUntil": "2024-01-02T23:00:00.000Z",
-      "terminatedFrom": "2024-01-01T23:00:00.000Z",
-      "debtorNo": "",
-      "department": "",
-      "caseManager": "",
-      "amountTo": "dede",
-      "amountFrom": "de"
-    },
-    {
-      "id": "f63c",
-      "openCases": false,
-      "amountFrom": "65",
-      "amountTo": "251321",
-      "caseManager": "",
-      "debtorNo": "",
-      "department": "Sales",
-      "terminatedUntil": "2024-01-30T08:59:13.258Z",
-      "inSummary": false,
-      "terminatedFrom": "2024-01-30T08:59:13.258Z",
-      "sorting": "third"
-    }
-  ],
-  "departments": [
-    {
-      "name": "Sales",
-      "id": "cd3e"
-    },
-    {
-      "name": "Marketing",
-      "id": "440b"
-    },
-    {
-      "name": "IT",
-      "id": "d197"
-    },
-    {
-      "name": "HR",
-      "id": "3c1c"
-    },
-    {
-      "name": "Logistics",
-      "id": "fd8f"
-    },
-    {
-      "name": "IT2",
-      "id": "42e6"
-    },
-    {
-      "name": "HR2",
-      "id": "550e"
-    },
-    {
-      "name": "Marketing2",
-      "id": "9bdf"
-    },
-    {
-      "name": "Logistics2",
-      "id": "c549"
-    },
-    {
-      "name": "Sale2s",
-      "id": "f868"
-    }
-  ],
-  "overviews": [
-    {
-      "title": "foreldes"
-    },
-    {
-      "title": "utleggstrekk"
-    },
-    {
-      "title": "gjeldsordning"
-    },
-    {
-      "title": "vurderingsmelding"
-    },
-    {
-      "title": "overdekning"
-    },
-    {
-      "title": "betallingsavtale"
-    },
-    {
-      "title": "pa vent"
-    },
-    {
-      "title": "langtidsovervakning"
-    },
-    {
-      "title": "tvangstiltak"
-    },
-    {
-      "title": "Forfallsliste dokumenter"
-    },
-    {
-      "title": "ved advokat"
-    },
-    {
-      "title": "vurdert restpurring"
-    },
-    {
-      "title": "Demo saksbehandler"
     }
   ]
 }
