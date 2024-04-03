@@ -2,6 +2,9 @@ import { render, screen } from '@/configs/test-utils';
 import { describe, expect, it } from 'vitest';
 
 import FilterStack from '../components/filter-stack';
+/**
+ * This is only one test file to showcase ability to setup and run vitest in order to test UI components
+ */
 const mockFetchedHotels = [
   {
     id: 1,
@@ -40,7 +43,7 @@ describe('test <FirstCardTitle/>', () => {
       }),
     ).toBeInTheDocument();
 
-    expect(screen.getByRole('textbox', { hidden: true })).toBeInTheDocument();
+    expect(screen.getAllByRole('textbox')).toHaveLength(2);
     expect(
       screen.getByRole('button', {
         name: /find prices/i,
